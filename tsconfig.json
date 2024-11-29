@@ -1,0 +1,72 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    // "target": "es5",
+    "allowUnreachableCode": true,
+    "allowUnusedLabels": true,
+    "allowUmdGlobalAccess": true,
+    "noImplicitReturns": false,
+    "allowSyntheticDefaultImports": true,
+    "useUnknownInCatchVariables": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
+    "declaration": true,
+    "declarationDir": "./_types",
+    "typeRoots": [
+      "./_types"
+    ],
+    "strictNullChecks": true,
+    "strictFunctionTypes": false,
+    "noImplicitAny": false,
+    "paths": {
+      "@pages/*": [ "app/*" ],
+      "@styles/*": [ "_styles/*" ],
+      "@auth": [ "pages/user/auth" ],
+      "@auth/*": [ "pages/user/auth/*" ],
+      "@api/*": [ "_api/*" ],
+      "@helpers": [ "_helpers" ],
+      "@hooks": [ "_hooks" ],
+      "@components/*": [ "_components/*" ],
+      "@metronic/*": [ "_metronic/*" ],
+      "@redux": [ "_redux" ],
+      "@redux/*": [ "_redux/*" ],
+      "@public/*": [ "public/*" ],
+      "@images/*": [ "public/images/*" ],
+      "@client/*": [ "_client/*" ]
+    },
+    "target": "ES2017"
+  },
+  "include": [
+    "next.config.ts",
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "build/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "build"
+  ]
+}

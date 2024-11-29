@@ -1,0 +1,36 @@
+//
+// To make future updates easier consider overriding the global variables from _variables.bootstrap.scss and _variables.custom.scss for current demo in this file.
+// Note that this file is included first and variables defined in _variables.bootstrap.scss and _variables.custom.scss
+// are not accessible in this file but you can override any global variable as shown below:
+//
+
+// Theme colors
+// Primary
+$primary: if(isDarkMode(), #4caf50, #4caf50);
+$primary-active: if(isDarkMode(), #2aa12e, #2aa12e);
+$primary-light: if(isDarkMode(), #f7fff7, #f7fff7);
+$primary-inverse: #ffffff;
+
+// Success
+$success: if(isDarkMode(), #34a853, #34a853);
+$success-active: if(isDarkMode(), #04aa77, #47be7d);
+$success-light: if(isDarkMode(), #1c3238, #e8fff3);
+$success-inverse: #ffffff;
+
+// Info
+$info: if(isDarkMode(), #405cff, #405cff);
+$info-active: if(isDarkMode(), #566fff, #566fff);
+$info-light: if(isDarkMode(), #2f264f, #f8f5ff);
+$info-inverse: #ffffff;
+
+// Danger
+$danger: if(isDarkMode(), #eb4335, #eb4335);
+$danger-active: if(isDarkMode(), #ee2d41, #d9214e);
+$danger-light: if(isDarkMode(), #3a2434, #fff5f8);
+$danger-inverse: #ffffff;
+
+// Warning
+$warning: if(isDarkMode(), #ff9900, #ff9900);
+$warning-active: if(isDarkMode(), #ffaa2a, #ffaa2a);
+$warning-light: if(isDarkMode(), #392f28, #fff8dd);
+$warning-inverse: #ffffff;

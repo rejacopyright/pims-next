@@ -1,0 +1,26 @@
+.tooltip-inner {
+  color: #000000 !important;
+  padding: 0.5rem 1rem !important;
+  background-color: rgba(255, 255, 255, 1) !important;
+  font-size: 14px;
+}
+.tooltip-inner div * {
+  color: #fff !important;
+}
+.tooltip .tooltip-inner {
+  box-shadow: 0px 3px 3px 0px rgba(16, 24, 40, 0.15);
+  border: 1px solid #eee;
+}
+$placements: (
+  'top': 'top',
+  'bottom': 'bottom',
+  'start': 'left',
+  'end': 'right',
+);
+@each $key, $val in $placements {
+  .bs-tooltip-#{$key} .tooltip-arrow::before,
+  .bs-tooltip-auto[data-popper-placement^='#{$val}'] .tooltip-arrow::before {
+    border-#{$val}-color: rgba(255, 255, 255, 1) !important;
+    box-shadow: 0px -5px 1px 1px rgba(16, 24, 40, 0.15);
+  }
+}

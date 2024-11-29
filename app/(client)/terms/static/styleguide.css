@@ -1,0 +1,17 @@
+:root {
+  --gray-700: rgba(39, 45, 55, 1);
+  --basewhite: rgba(255, 255, 255, 1);
+  --neutral-500: rgba(239, 239, 241, 1);
+  --text-l-regular-font-family: 'Poppins', Helvetica;
+  --text-l-regular-font-weight: 400;
+  --text-l-regular-font-size: 16px;
+  --text-l-regular-letter-spacing: -0.10000000149011612px;
+  --text-l-regular-line-height: 24px;
+  --text-l-regular-font-style: normal;
+  --headline-XXS-desktop-bold-font-family: 'Poppins', Helvetica;
+  --headline-XXS-desktop-bold-font-weight: 700;
+  --headline-XXS-desktop-bold-font-size: 20px;
+  --headline-XXS-desktop-bold-letter-spacing: 0px;
+  --headline-XXS-desktop-bold-line-height: 28px;
+  --headline-XXS-desktop-bold-font-style: normal;
+}

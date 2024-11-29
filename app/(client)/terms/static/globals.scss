@@ -1,0 +1,12 @@
+/* @import url('https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'); */
+/* a blue color as a generic focus style */
+a .span,
+.div-contents .span,
+.div-contents .text-wrapper-3 {
+  text-decoration: none !important;
+  color: #0000ee !important;
+  &:active,
+  &:hover {
+    color: #4a90e2 !important;
+  }
+}

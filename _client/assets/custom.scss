@@ -1,0 +1,72 @@
+@function isDarkMode() {
+  @return false;
+}
+@import '@metronic/assets/sass/core/components/variables';
+@media screen and (min-width: 1200px) {
+  .cs_nav .cs_nav_list > li.menu-item-single {
+    & > a,
+    > div {
+      position: relative;
+      font-size: 16px;
+      font-weight: bold;
+    }
+  }
+  .cs-gescout_sticky .menu-item-single ul > li > a {
+    color: #000 !important;
+  }
+  .menu-item-single ul li a {
+    color: #000;
+  }
+  .header_style_2.cs-gescout_sticky .cs_nav .cs_nav_list li {
+    a,
+    div {
+      color: $primary;
+      font-weight: bold;
+    }
+  }
+  .cs_nav .cs_nav_list ul {
+    li:hover {
+      background-color: $primary-light;
+      a {
+        color: $primary;
+      }
+    }
+  }
+  .cs_nav .cs_nav_list > li.menu-item-has-children > div {
+    position: relative;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .cs_nav .cs_nav_list > li.menu-item-has-children > div::after {
+    content: '\f282';
+    font-family: bootstrap-icons;
+    font-weight: 900;
+    display: inline-block;
+    border-left: 0;
+    border-top: 0;
+    margin-left: 10px;
+    position: relative;
+    top: 0px;
+    font-size: 12px;
+    color: currentColor;
+  }
+  .cs_nav .cs_nav_list > li > div {
+    padding: 10px 0;
+    display: inline-flex;
+    position: relative;
+    height: inherit;
+    align-items: center;
+    color: var(--heading-color);
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .cs_nav .menu-item-single {
+    position: relative;
+  }
+}
+
+.details-post-area .boxs-area ul li {
+  background-color: #fff;
+}

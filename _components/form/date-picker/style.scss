@@ -1,0 +1,139 @@
+@function isDarkMode() {
+  @return false;
+}
+@import '@metronic/assets/sass/core/components/variables';
+
+$size: 36;
+
+.react-calendar__month-view__weekdays,
+.react-calendar__tile {
+  font-family: $font-family !important;
+  font-weight: 500;
+}
+.react-calendar__month-view__weekdays {
+  font-size: 14px;
+  abbr[title] {
+    text-decoration: none !important;
+    cursor: default;
+    color: #a5acba;
+    font-weight: 500;
+  }
+}
+// .react-calendar,
+// .react-calendar *,
+// .react-calendar *:before,
+// .react-calendar *:after {
+//   justify-content: center;
+// }
+// .react-calendar * {
+//   justify-content: center;
+//   &:after {
+//     content: '';
+//     flex: auto !important;
+//   }
+// }
+.react-calendar__tile {
+  padding: 0;
+  width: #{$size}px;
+  height: #{$size}px;
+  font-size: 14px;
+  margin-top: 4px !important;
+  // flex-basis: unset !important;
+  &:not(:disabled) {
+    border-radius: 5px;
+  }
+  &:disabled {
+    background: $gray-100;
+    color: $gray-300;
+  }
+}
+.w-calendar {
+  width: #{$size * 7}px;
+}
+.shadow-calendar {
+  box-shadow: 0px 20px 25px -5px #1018281a;
+  // box-shadow: 0px 8px 10px -6px #1018281A;
+}
+.react-calendar {
+  border: unset;
+}
+.react-calendar__tile--active,
+.react-calendar__tile--hasActive,
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus,
+.react-calendar__tile:enabled:focus {
+  background: $orange-light;
+  color: $orange;
+}
+.react-calendar__tile:enabled:hover {
+  background: $orange;
+  color: #fff;
+}
+.react-calendar__tile--now {
+  background: #fff;
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 16px;
+    height: 2px;
+    background: $orange;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+.react-calendar__month-view__days__day--neighboringMonth,
+.react-calendar__decade-view__years__year--neighboringDecade,
+.react-calendar__century-view__decades__decade--neighboringCentury {
+  color: #dae0e6;
+  font-weight: 500;
+}
+.react-calendar__navigation__arrow.react-calendar__navigation__next2-button,
+.react-calendar__navigation__arrow.react-calendar__navigation__prev2-button {
+  display: none;
+}
+.react-calendar__navigation__arrow.react-calendar__navigation__prev-button,
+.react-calendar__navigation__arrow.react-calendar__navigation__next-button {
+  font-family: $font-family;
+  font-size: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background: #ffffff;
+  border: 1px solid #dae0e6;
+  box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.04);
+  border-radius: 5px;
+  padding: 0;
+  padding-bottom: 3px;
+  min-width: unset;
+  cursor: pointer !important;
+}
+
+.react-calendar__navigation__label {
+  height: 40px;
+  font-weight: 600;
+  font-family: $font-family;
+}
+
+.react-calendar__navigation,
+.react-calendar__navigation {
+  margin-bottom: 16px;
+  & button:enabled:hover,
+  button:enabled:focus {
+    background-color: #fff;
+    cursor: default;
+  }
+}
+
+.react-calendar__year-view .react-calendar__tile,
+.react-calendar__decade-view .react-calendar__tile,
+.react-calendar__century-view .react-calendar__tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

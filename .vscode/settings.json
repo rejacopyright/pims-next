@@ -1,0 +1,18 @@
+{
+  "editor.autoClosingDelete": "always",
+  "editor.autoClosingOvertype": "always",
+  "editor.autoClosingBrackets": "always",
+  "editor.autoClosingQuotes": "always",
+  "editor.tabSize": 2,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+  "workbench.colorTheme": "Default Dark Modern",
+  "css.lint.unknownAtRules": "ignore",
+  "files.associations": {
+    // "*.js": "javascriptreact",
+    // "*.css": "tailwindcss"
+  }
+}

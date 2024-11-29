@@ -1,0 +1,30 @@
+[
+  {
+    "icon": "/client/icons/service-page-icon1.png",
+    "name": "ransomware",
+    "title": "Ransomware",
+    "desc": "Strategic IT planning  roadmap development Business process analysis and improvement for It solution & technology.",
+    "btnLink": "/product/ransomware"
+  },
+  {
+    "icon": "/client/icons/service-page-icon2.png",
+    "name": "ecert",
+    "title": "E-Certificate",
+    "desc": "Mobile app development for iOS, Android, and cross-platform solutions & web application development.",
+    "btnLink": "/product/ecert"
+  },
+  {
+    "icon": "/client/icons/service-page-icon3.png",
+    "name": "data-protection",
+    "title": "Data Protection",
+    "desc": "Infrastructure as a Service (IaaS), Platform as a Service (PaaS),  and Software as a Service (SaaS) Platform",
+    "btnLink": "/product/data-protection"
+  },
+  {
+    "icon": "/client/icons/service-page-icon4.png",
+    "name": "smart-security",
+    "title": "Smart Security",
+    "desc": "Threat assessment and vulnerability analysis. Security strategy development and implementation",
+    "btnLink": "/product/smart-security"
+  }
+]

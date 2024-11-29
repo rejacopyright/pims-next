@@ -1,0 +1,8 @@
+export const APP_NAME: string = 'PIMS Club'
+export const APP_MODE: 'live' | 'test' = 'live'
+export const APP_EMAIL: string = 'info@pimsclub.id'
+export const APP_WEBSITE: string = 'www.pimsclub.co.id'
+export const APP_HOME_PATH: string = '/'
+export const APP_ADMIN_PATH: string = '/admin'
+export const APP_USER_PATH: string = '/user'
+export const APP_TRAINER_PATH: string = '/trainer'
