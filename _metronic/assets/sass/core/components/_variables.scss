@@ -80,6 +80,9 @@ $dark-inverse: if(isDarkMode(), $gray-100, $white) !default; // Custom variable
 
 // Primary colors
 $primary: #4caf50 !default; // Bootstrap variable
+$primary-100: #eeffee;
+$primary-200: #ccffcc;
+$primary-400: #6ede72;
 $primary-active: #2aa12e !default; // Custom variable
 $primary-light: if(isDarkMode(), #eeffee, #eeffee) !default; // Custom variable
 $primary-inverse: $white !default; // Custom variable

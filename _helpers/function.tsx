@@ -319,3 +319,5 @@ export const blobToBase64 = (blob) => {
     }
   })
 }
+
+export const isDev: boolean = process?.env?.NODE_ENV === 'development'

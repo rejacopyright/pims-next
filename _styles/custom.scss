@@ -25,7 +25,7 @@
 }
 
 .gd-primary {
-  @include customGradient(#a5f, $primary);
+  @include customGradient($primary-400, $primary);
 }
 .gd-pink {
   @include customGradient(#ff9cc3, #fd3484);

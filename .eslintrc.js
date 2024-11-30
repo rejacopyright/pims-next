@@ -56,6 +56,7 @@ module.exports = {
     ],
     // "react-hooks/exhaustive-deps": "error",
     'react-hooks/rules-of-hooks': 'off',
+    'react/display-name': 'off',
     'react/no-array-index-key': 'off',
     'react/no-unescaped-entities': 'off',
     'react/jsx-props-no-spreading': 'off',

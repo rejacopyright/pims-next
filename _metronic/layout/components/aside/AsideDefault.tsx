@@ -37,9 +37,9 @@ const AsideDefault: FC<any> = ({ sidebar }) => {
               <div className='d-flex flex-center gap-5px'>
                 <Image
                   alt='Logo'
-                  className='logo pb-4px'
-                  width={25}
-                  height={25}
+                  className='logo pb-4px w-25px h-25px'
+                  width={0}
+                  height={0}
                   src='/logo/logo-circle.png'
                   priority
                 />

@@ -1,4 +1,3 @@
-import { KTSVG } from '@helpers'
 import debounce from 'lodash/debounce'
 import { ChangeEvent, FC, useCallback, useEffect, useState } from 'react'
 
@@ -10,6 +9,7 @@ interface SearchboxProps {
   className?: string
   placeholder?: any
   size?: 'sm' | 'md' | 'lg'
+  height?: number
   // theme?: 'primary' | 'danger' | 'warning' | 'info' | 'custom-blue'
   rounded?: boolean
   icon?: string
@@ -24,27 +24,14 @@ export const Searchbox: FC<SearchboxProps> = ({
   delay = 1000,
   className = '',
   placeholder = 'Search...',
-  size = 'md',
   rounded = false,
   icon = 'search',
   controlled = false,
   bounceOnEmpty = false,
+  height = 40,
 }) => {
   const [val, setVal] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(false)
-
-  let formSize: string = 'ms-3 me-1 my-3'
-  let iconSize: number = 20
-  switch (size) {
-    case 'sm':
-      formSize = 'ms-2 me-0 my-2'
-      break
-    case 'lg':
-      iconSize = 35
-      break
-    default:
-      break
-  }
 
   useEffect(() => {
     setVal(defaultValue)
@@ -65,22 +52,16 @@ export const Searchbox: FC<SearchboxProps> = ({
 
   return (
     <div
-      className={`input-group d-flex align-items-center bg-white border border-gray-300 h-40px position-relative radius-${rounded ? 50 : 5} ${className}`}>
-      <div
-        className={`d-flex flex-center w-${iconSize}px h-${iconSize}px radius-${rounded ? 50 : 5} ${formSize}`}>
-        <KTSVG
-          path='/media/icons/general/gen004.svg'
-          className='svg-icon-white position-absolutes'
-          svgClassName='w-20px h-20px d-none'
-        />
-        <i className={`las la-${icon} text-dark fs-20px`} style={{ transform: 'scaleX(-1)' }} />
+      className={`input-group d-flex align-items-center bg-white border border-gray-300 h-${height}px position-relative radius-${rounded ? 50 : 5} ${className}`}>
+      <div className={`d-flex flex-center w-${height}px h-${height}px radius-${rounded ? 50 : 5}`}>
+        <i className={`las la-${icon} text-dark fs-16px`} style={{ transform: 'scaleX(-1)' }} />
       </div>
       {controlled ? (
         <input
           type='text'
           name='search'
           value={val}
-          className='form-control h-35px border-0 bg-transparent fs-13px ps-5px pt-8px'
+          className='form-control h-100 border-0 bg-transparent fs-13px ps-0 mb-1px'
           placeholder={placeholder}
           onChange={(e: ChangeEvent) => {
             setLoading(true)
@@ -102,7 +83,7 @@ export const Searchbox: FC<SearchboxProps> = ({
           name='search'
           defaultValue={val}
           // className={`border-0 bg-white lh-0 ${configClass?.form}`}
-          className='form-control h-35px border-0 bg-transparent fs-13px ps-5px pt-8px'
+          className='form-control h-36px border-0 bg-transparent fs-13px ps-5px pt-8px'
           placeholder={placeholder}
           onChange={(e: ChangeEvent) => {
             const target: any = e?.target || {}

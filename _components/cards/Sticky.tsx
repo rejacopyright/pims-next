@@ -61,7 +61,7 @@ export const Sticky: FC<any> = ({ children, className = '', style = {} }) => {
   }, [headerHeight, toolBarHeight])
 
   return (
-    <div className='position-sticky w-100' style={{ zIndex: 99, top }}>
+    <div className='position-sticky w-100 sticky-custom' style={{ zIndex: 99, top }}>
       {className ? (
         <div className={className} style={style}>
           {children}

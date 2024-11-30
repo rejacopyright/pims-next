@@ -3,7 +3,7 @@ import 'react-calendar/dist/Calendar.css'
 import './style.scss'
 
 import moment from 'moment'
-import 'moment/locale/ko'
+import 'moment/locale/id'
 import { FC, useEffect, useState } from 'react'
 import Calendar from 'react-calendar'
 
@@ -41,7 +41,7 @@ const Index: FC<Props> = ({
       <div className='pb-24px'>
         <Calendar
           view={view}
-          locale='ko'
+          locale='id'
           // nextLabel=':)'
           showNavigation={['month', 'decade'].includes(view)}
           minDate={minDate}
@@ -101,7 +101,7 @@ const Index: FC<Props> = ({
                     e.stopPropagation()
                     setView('decade')
                   }}>
-                  {moment(value).format('YYYY[년]')}
+                  {moment(value).format('YYYY')}
                 </div>
               )}
               {['year', 'month'].includes(view) && (
@@ -127,16 +127,16 @@ const Index: FC<Props> = ({
             <button
               type='button'
               onClick={onCancel}
-              className='btn w-100 btn-sm btn-flex flex-center btn-white border border-gray-300 text-dark fw-bolder fs-14px h-40px col text-nowrap'>
-              닫기
+              className='btn w-100 btn-sm btn-flex flex-center btn-white border border-gray-300 text-dark fw-bold fs-13px h-40px col text-nowrap'>
+              Tutup
             </button>
           </div>
           <div className='col p-0'>
             <button
               type='button'
               onClick={() => onSubmit(moment(value).toDate())}
-              className='btn w-100 btn-sm btn-flex flex-center btn-primary fw-bolder fs-14px h-40px col text-nowrap'>
-              적용
+              className='btn w-100 btn-sm btn-flex flex-center btn-primary fw-bolder fs-13px h-40px col text-nowrap'>
+              Simpan
             </button>
           </div>
         </div>
@@ -145,9 +145,9 @@ const Index: FC<Props> = ({
           <button
             type='button'
             onClick={() => setView('month')}
-            className='btn w-100 btn-sm btn-flex flex-center btn-white border border-gray-300 text-dark fw-bolder fs-14px h-40px col text-nowrap gap-5px'>
-            <i className='las la-arrow-left text-dark fs-16px mb-1px' />
-            <span>돌아가다</span>
+            className='btn w-100 btn-sm btn-flex flex-center btn-white border border-gray-300 text-gray-500 fw-bold fs-13px h-40px col text-nowrap gap-5px'>
+            <i className='las la-arrow-left text-gray-500 fs-16px mb-1px' />
+            <span>Kembali</span>
           </button>
         </div>
       )}

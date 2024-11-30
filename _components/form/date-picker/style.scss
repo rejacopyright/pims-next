@@ -11,7 +11,8 @@ $size: 36;
   font-weight: 500;
 }
 .react-calendar__month-view__weekdays {
-  font-size: 14px;
+  font-size: 13px;
+  text-transform: capitalize;
   abbr[title] {
     text-decoration: none !important;
     cursor: default;
@@ -62,7 +63,7 @@ $size: 36;
 .react-calendar__tile--active:enabled:hover,
 .react-calendar__tile--active:enabled:focus,
 .react-calendar__tile:enabled:focus {
-  background: $orange-light;
+  background: $primary-100;
   color: $orange;
 }
 .react-calendar__tile:enabled:hover {

@@ -71,7 +71,7 @@ const CardBadge: FC<{ detail: any; onDistributionChanged: () => void; achievemen
         }}>
         {imageIsLoading && (
           <div className='d-flex flex-center w-100' style={{ opacity: '0.75' }}>
-            <Image src='/logo/logo-circle.png' alt='Open Badge' width={75} height={15} priority />
+            <Image src='/logo/logo-circle.png' alt='' width={25} height={25} priority />
             <DotFlash animation='falling' style={{ transform: 'scale(0.5)', marginTop: '5px' }} />
           </div>
         )}
