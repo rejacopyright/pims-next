@@ -1,10 +1,13 @@
 'use client'
+import { API_SERVER } from '@api/axios'
+import { getClass } from '@api/class'
 import { Sticky } from '@components/cards/Sticky'
 import { FilterDate } from '@components/filter/Calendar'
 import { Searchbox } from '@components/form'
 import Table from '@components/table'
-import { isDev, toCapitalize } from '@helpers'
+import { APP_ADMIN_PATH, isDev, toCapitalize } from '@helpers'
 import { useLocation } from '@hooks'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import omit from 'lodash/omit'
 import moment from 'moment'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
@@ -170,8 +173,30 @@ const Filter: FC<any> = () => {
 }
 
 const Index: FC<any> = ({ params }) => {
+  const router = useRouter()
   const thisParams: any = use(params)
+  const queryClient = useQueryClient()
+  const searchParams = useSearchParams()
+  const queryParams = parse(searchParams.toString() || '', { ignoreQueryPrefix: true })
   const classType = thisParams?.class
+
+  const dataClassQueryParams: any = {
+    service_id: classType,
+    q: queryParams?.q || '',
+  }
+
+  const dataClassQuery: any = useQuery({
+    // initialData: {data: []},
+    queryKey: ['getClass', { dataClassQueryParams }],
+    queryFn: () => getClass(classType, dataClassQueryParams),
+    select: ({ data }: any) => {
+      const res: any = data || {}
+      return res
+    },
+  })
+  const dataClass: any = dataClassQuery?.data?.data || []
+  const dataClassTotal = dataClassQuery?.data?.total || 0
+  const pageIsLoading: any = !dataClassQuery?.isFetched
 
   return (
     <div className='content'>
@@ -180,12 +205,12 @@ const Index: FC<any> = ({ params }) => {
       <div className='d-flex align-items-center gap-8px fs-16px fw-500 my-10px'>
         <div className='fs-12px'>Total</div>
         <div className='fs-12px'>:</div>
-        <div className='fw-700 text-primary'>100</div>
+        <div className='fw-700 text-primary'>{dataClassTotal}</div>
         {isDev && (
           <div
             className='btn btn-sm btn-dark m-0 py-1 px-3 ms-auto'
             onClick={() => {
-              // queryClient.resetQueries({ queryKey: ['getStudioClass'] })
+              queryClient.resetQueries({ queryKey: ['getClass'] })
             }}>
             Clear Cache
           </div>
@@ -193,23 +218,70 @@ const Index: FC<any> = ({ params }) => {
       </div>
       <div className='bg-white shadow-xs mb-50px'>
         <Table
-          loading={false}
+          loading={pageIsLoading}
           stickyHeader
-          data={Array(50)
-            .fill('')
-            .map((_, index) => ({ number: index + 1, name: `Name ${index + 1}` }))}
+          data={dataClass}
           pagination
-          total={100}
+          total={dataClassTotal}
           columnClasses={{
             number: 'text-center',
           }}
           headers={[
-            { value: 'number', label: 'No.', className: 'text-center', width: 0, sort: false },
-            { value: 'image', label: '', className: 'text-start px-20px', width: 0, sort: false },
+            { value: 'image', label: '#', className: 'text-start px-20px', width: 0, sort: false },
             { value: 'name', label: 'Nama Program', className: 'text-start' },
+            { value: 'actions', label: '', className: 'text-center', width: 0, sort: false },
           ]}
-          tdClass='px-20px py-15px fs-13px'
+          tdClass='px-20px py-10px fs-13px'
           render={(e: any, _original: any) => ({
+            image: () => {
+              const images = _original?.class_gallery
+              if (images?.length) {
+                return (
+                  <div
+                    className='w-50px h-50px radius-5 border'
+                    style={{
+                      background: `#fff url(${API_SERVER}/static/images/class/${images?.[0]?.filename}) center / cover no-repeat`,
+                    }}
+                  />
+                )
+              } else {
+                return (
+                  <div
+                    className='w-50px h-50px radius-5 border'
+                    style={{
+                      background: `#fff url(/media/placeholder/blank-image.svg) center / cover no-repeat`,
+                    }}
+                  />
+                )
+              }
+            },
+            actions: () => {
+              return (
+                <div className='d-flex flex-center gap-10px'>
+                  <div
+                    className='btn btn-light-primary btn-flex flex-center p-0 w-30px h-30px radius-50'
+                    onClick={() => {
+                      //
+                    }}>
+                    <div className='fas fa-eye' />
+                  </div>
+                  <div
+                    className='btn btn-light-warning btn-flex flex-center p-0 w-30px h-30px radius-50'
+                    onClick={() =>
+                      router.push(`${APP_ADMIN_PATH}/class/${classType}/create?id=${_original?.id}`)
+                    }>
+                    <div className='fas fa-pen-alt' />
+                  </div>
+                  <div
+                    className='btn btn-light-danger btn-flex flex-center p-0 w-30px h-30px radius-50'
+                    onClick={() => {
+                      //
+                    }}>
+                    <div className='fas fa-trash-alt' />
+                  </div>
+                </div>
+              )
+            },
             xxx: (
               <ClickableComponent
                 align='start'

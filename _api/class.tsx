@@ -7,3 +7,26 @@ export const createClass = (data: any) => {
     data,
   })
 }
+
+export const updateClass = (id: string, data: any) => {
+  return axios({
+    method: 'put',
+    url: `class/${id}/update`,
+    data,
+  })
+}
+
+export const getClass = (service_id: number = 2, params: any) => {
+  return axios({
+    method: 'get',
+    url: `class/${service_id}`,
+    params,
+  })
+}
+
+export const getDetailClass = (id?: string) => {
+  return axios({
+    method: 'get',
+    url: `class/${id}/detail`,
+  })
+}

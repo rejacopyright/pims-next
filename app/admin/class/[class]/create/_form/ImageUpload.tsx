@@ -1,7 +1,7 @@
 import { ImageUploader } from '@components/form/ImageUploader'
 import { ToastMessage } from '@components/toast'
 import { FormikProps } from 'formik'
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 
 import { FormValues } from '../page'
 
@@ -11,6 +11,9 @@ interface FormProps {
 
 const Index: FC<FormProps> = ({ formik }) => {
   const [images, setImages] = useState<any>([])
+  useEffect(() => {
+    setImages(formik.values?.images || [])
+  }, [formik.values?.images])
   return (
     <div className='bg-white shadow-xs radius-15 overflow-hidden'>
       <div className='border-bottom border-gray-300 py-10px px-20px m-0 d-flex align-items-center'>
@@ -25,9 +28,8 @@ const Index: FC<FormProps> = ({ formik }) => {
               <div
                 className='w-150px h-150px btn border border-gray-300 d-flex flex-center position-relative radius-15'
                 style={{
-                  background: `#fff url(${URL.createObjectURL(img)}) center / cover no-repeat`,
+                  background: `#fff url(${typeof img === 'string' ? img : URL.createObjectURL(img)}) center / cover no-repeat`,
                 }}>
-                {/*  */}
                 <div className='position-absolute top-0 end-0 p-4px'>
                   <div
                     className='btn btn-danger btn-flex flex-center p-0 w-25px h-25px radius-15'

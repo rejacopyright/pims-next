@@ -41,6 +41,7 @@ const Index: FC<FormProps> = ({ formik }) => {
           <div className='col-lg-4 my-10px'>
             <div className={configClass?.label}>Harga Default</div>
             <InputCurrency
+              defaultValue={formik.values?.default_fee}
               prefix='Rp.'
               placeholder='Masukan Harga Default'
               onChange={(e: any) => {
@@ -61,7 +62,7 @@ const Index: FC<FormProps> = ({ formik }) => {
               ]}
               isClearable={false}
               placeholder='Pilih Gender'
-              defaultValue={formik.initialValues?.gender}
+              defaultValue={formik.values?.gender}
               styleOption={{
                 control: {
                   border: '1px solid #eee',
@@ -80,13 +81,17 @@ const Index: FC<FormProps> = ({ formik }) => {
             <div className={configClass?.label}>Trainer Default</div>
             <SelectAjax
               api={getTrainer}
-              reload={false}
+              reload={formik.values?.default_trainer_id?.value}
               sm={true}
               name='default_trainer_id'
               // className='w-100'
               isClearable={false}
               placeholder='Pilih Trainer'
-              defaultValue={undefined}
+              defaultValue={
+                formik.values?.default_trainer_id?.value
+                  ? formik.values?.default_trainer_id
+                  : undefined
+              }
               parse={(e: any) => {
                 return {
                   value: e?.id,
@@ -118,7 +123,7 @@ const Index: FC<FormProps> = ({ formik }) => {
               id='editor'
               options={{ minHeight: '300px' }}
               placeholder='Tulis deskripsi disini...'
-              defaultData=''
+              defaultData={formik?.values?.description || ''}
               onChange={(e: any) => {
                 formik.setFieldValue('description', e)
               }}

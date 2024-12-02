@@ -13,7 +13,7 @@
     "lint:quiet": "next lint --quiet",
     "lint:strict": "next lint --fix --max-warnings=0",
     "export": "next build && next export",
-    "prepare": "husky install",
+    "prepare": "husky",
     "pkg": "npx depcheck --config=.depcheckrc"
   },
   "dependencies": {

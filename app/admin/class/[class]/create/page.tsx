@@ -1,15 +1,18 @@
 'use client'
 
-import { createClass } from '@api/class'
+import { API_SERVER } from '@api/axios'
+import { createClass, getDetailClass, updateClass } from '@api/class'
 import { ToastMessage } from '@components/toast'
-import { APP_ADMIN_PATH, blobToBase64 } from '@helpers'
+import { APP_ADMIN_PATH, blobToBase64, urlToBase64 } from '@helpers'
+import { useQuery } from '@tanstack/react-query'
 import { useFormik } from 'formik'
 import dynamic from 'next/dynamic'
-import { useRouter } from 'next/navigation'
-import { FC, use, useState } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { parse } from 'qs'
+import { FC, use, useEffect, useState } from 'react'
 import * as Yup from 'yup'
 
-const FormImage = dynamic(() => import('./_form/image'))
+const FormImage = dynamic(() => import('./_form/ImageUpload'))
 const FormMain = dynamic(() => import('./_form/main'))
 
 export interface FormValues {
@@ -18,8 +21,9 @@ export interface FormValues {
   name?: string
   default_fee?: number
   gender?: number
-  default_trainer_id?: string
+  default_trainer_id?: { value: any; label: any }
   description?: string
+  isImageChanged?: boolean
 }
 
 const validationSchema = Yup.object().shape({
@@ -28,27 +32,64 @@ const validationSchema = Yup.object().shape({
 
 const Index: FC<any> = ({ params }) => {
   const thisParams: any = use(params)
+  const searchParams: any = useSearchParams()
+  const queryParams = parse(searchParams.toString() || '', { ignoreQueryPrefix: true })
+  const class_id = queryParams?.id
+  const isEdit: boolean = searchParams?.has('id') && Boolean(class_id)
   const classType = thisParams?.class
   const router = useRouter()
 
   const [submitBtnIsLoading, setSubmitBtnIsLoading] = useState<boolean>(false)
 
-  const formik = useFormik({
-    initialValues: {
-      images: [],
-      name: '',
-      default_fee: '',
-      gender: 3,
+  const initialValues = {
+    images: [],
+    name: '',
+    default_fee: '',
+    default_trainer_id: {},
+    gender: 3,
+    description: '',
+  }
+
+  const detailClassQuery: any = useQuery({
+    // initialData: {data: []},
+    enabled: isEdit,
+    queryKey: ['getDetailClass', { id: class_id }],
+    queryFn: async () => {
+      const api = await getDetailClass(class_id as string)
+      const newData = api?.data
+      newData.images = await Promise.all(
+        newData?.class_gallery?.map(async (img) => {
+          const base64Img = await urlToBase64(`${API_SERVER}/static/images/class/${img?.filename}`)
+          return { index: img?.index, img: base64Img }
+        })
+      )
+
+      return newData
     },
+  })
+
+  const detailClass = detailClassQuery?.data || {}
+
+  const formik = useFormik({
+    initialValues,
     validationSchema,
     onSubmit: async (val: any) => {
-      setSubmitBtnIsLoading(true)
+      // setSubmitBtnIsLoading(true)
+
       const base64images = await Promise.all(
         formik.values?.images?.map(async (item: any) => {
-          const img = await blobToBase64(item?.img)
+          let img = item?.img
+          if (typeof item?.img !== 'string') {
+            img = await blobToBase64(item?.img)
+          }
           return { ...item, img }
         })
       )
+
+      // Check If Image is changed
+      const imagefromAPI = detailClass?.images?.map((item) => item?.img)?.join()
+      const imagefromFormik = base64images?.map((item) => item?.img)?.join()
+      const isImageChanged = imagefromFormik !== imagefromAPI
 
       const params: FormValues = {
         service_id: classType === 'studio' ? 2 : classType === 'functional' ? 3 : 2,
@@ -58,9 +99,12 @@ const Index: FC<any> = ({ params }) => {
         gender: val?.gender || '',
         description: val?.description || '',
         images: base64images || [],
+        isImageChanged,
       }
 
-      createClass(params)
+      const apiInstance =
+        isEdit && class_id ? updateClass(class_id as string, params) : createClass(params)
+      apiInstance
         .then(({ data }: any) => {
           if (data?.status === 'success') {
             ToastMessage({ type: 'success', message: data?.message })
@@ -77,6 +121,25 @@ const Index: FC<any> = ({ params }) => {
         .finally(() => setSubmitBtnIsLoading(false))
     },
   })
+
+  useEffect(() => {
+    if (isEdit) {
+      formik.setValues({
+        images: detailClass?.images || [],
+        name: detailClass?.name || '',
+        default_fee: detailClass?.default_fee || '',
+        default_trainer_id: detailClass?.default_trainer?.id
+          ? {
+              value: detailClass?.default_trainer?.id,
+              label: `${detailClass?.default_trainer?.first_name} ${detailClass?.default_trainer?.last_name}`,
+            }
+          : {},
+        gender: detailClass?.gender || 3,
+        description: detailClass?.description || '',
+      })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [detailClass, isEdit])
   return (
     <div className='content'>
       <form action='' onSubmit={formik.handleSubmit}>
