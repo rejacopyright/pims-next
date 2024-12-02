@@ -10,7 +10,7 @@ import {
 } from './config'
 
 interface SelectProps extends Omit<SelectTypes, 'defaultValue'> {
-  defaultValue?: string
+  defaultValue?: string | number
 }
 
 const SelectField: any = (

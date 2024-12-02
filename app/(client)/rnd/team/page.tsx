@@ -1,8 +1,8 @@
 'use client'
 
 import BreadCumb from '@client/Components/Common/BreadCumb'
-import { FC } from 'react'
 import Team5 from '@client/Components/Team/Team5'
+import { FC } from 'react'
 
 const Index: FC<any> = () => {
   return (

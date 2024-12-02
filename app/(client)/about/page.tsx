@@ -1,10 +1,10 @@
 'use client'
 
 import BreadCumb from '@client/Components/Common/BreadCumb'
-import { FC } from 'react'
-import Vission1 from '@client/Components/Mission/Vission1'
 import ContactInfo1 from '@client/Components/ContactInfo/ContactInfo1'
 import Cta4 from '@client/Components/Cta/Cta4'
+import Vission1 from '@client/Components/Mission/Vission1'
+import { FC } from 'react'
 
 const Index: FC<any> = () => {
   return (

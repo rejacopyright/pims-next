@@ -49,15 +49,15 @@ $topbar-height: 56px;
   box-shadow: 0px 25px 50px -12px #10182840 !important;
 }
 
-.Toastify__toast-container--top-center {
-  top: 120px !important;
-}
+// .Toastify__toast-container--top-center {
+//   top: 120px !important;
+// }
 
-.Toastify__close-button {
-  position: absolute;
-  right: 7px;
-  top: 5px;
-}
+// .Toastify__close-button {
+//   position: absolute;
+//   right: 7px;
+//   top: 5px;
+// }
 
 .form-control {
   font-weight: 400;
@@ -230,12 +230,12 @@ $topbar-height: 56px;
   .card-badge {
     width: 220px;
   }
-  .Toastify__toast--stacked {
-    width: auto;
-  }
-  .Toastify__toast-container {
-    padding: 0;
-  }
+  // .Toastify__toast--stacked {
+  //   width: auto;
+  // }
+  // .Toastify__toast-container {
+  //   padding: 0;
+  // }
   .cp-margin {
     margin-top: 60px;
     margin-bottom: 60px;

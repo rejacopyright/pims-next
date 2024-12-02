@@ -1,4 +1,5 @@
 'use client'
+import { APP_NAME } from '@helpers'
 import { useRouter } from 'next/navigation'
 import { FC } from 'react'
 
@@ -6,6 +7,7 @@ const Button: FC<any> = ({ home }) => {
   const router = useRouter()
   return (
     <div className=''>
+      <title>{APP_NAME}</title>
       <button
         type='button'
         className='btn btn-flex btn-sm btn-color-primary bg-light-primary ps-3 mx-2'

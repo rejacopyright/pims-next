@@ -1,4 +1,4 @@
-import './style.scss'
+// import './style.scss'
 
 import { useDeepEffect } from '@hooks'
 import { debounce, differenceWith, isEqual, uniqBy } from 'lodash'
@@ -41,7 +41,7 @@ const SelectAjax: any = (
     DropdownElement,
     ClearElement,
     MultiValueElement,
-    formatOptionLabel = () => '',
+    formatOptionLabel,
   }: SelectTypes,
   ref: any
 ) => {
@@ -77,7 +77,7 @@ const SelectAjax: any = (
 
   const mapApi: any = ({ page: _page = 1, query: _query = '' }: any) => {
     setIsLoading(true)
-    api({ ...queryParams, page: _page, limit, keyword: `*${_query}*` })
+    api({ ...queryParams, page: _page, limit, q: _query })
       .then(({ data: { data: res } }: any) => {
         const data: any = res?.data || res
         if (data?.length) {

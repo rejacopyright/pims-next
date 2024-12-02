@@ -5,6 +5,7 @@ interface ClassesProps {
   size?: string
   label?: string
   form?: string
+  formError?: string
   select?: string
   search?: string
   body?: string
@@ -23,6 +24,7 @@ const classes: ClassesProps = {
   label: 'fw-bold fs-13px mb-4px text-dark',
   search: 'form-control form-control-sm fs-11px min-h-35px',
   form: 'form-control form-control-sm form-control-solid text-dark fs-14px h-40px border border-dashed-xxx border-primary-xxx py-9px px-16px',
+  formError: 'fs-12px fw-bold text-danger mt-2px',
   select: 'form-select form-select-sm form-select-solid fw-bolder text-dark fs-11px min-h-40px',
   readOnly:
     'form-control form-control-sm border-1 border-gray-300 cursor-na bg-fd text-dark fs-11px min-h-40px',

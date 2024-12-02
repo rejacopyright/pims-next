@@ -1,5 +1,4 @@
 'use client'
-import { API_SERVER } from '@api/axios'
 import { createShareURL, getBlockchainVerification } from '@api/badge'
 import { KTSVG } from '@helpers'
 import last from 'lodash/last'
@@ -22,7 +21,7 @@ const Index: FC<Props> = ({ detailBadge, shareIsLoading }) => {
   const walletDetail: any = useSelector(({ wallet }: any) => wallet?.detail, shallowEqual)
   const { USER_ID, USER_BDG_ID, BIZ_MBR_ID, BDG_ID, CERT_FILE_NAME, NAME }: any = walletDetail || {}
 
-  const achievement: any = detailBadge?.credentialSubject?.achievement || {}
+  const _achievement: any = detailBadge?.credentialSubject?.achievement || {}
 
   // PDF SCOPE
   const [showModalViewPDF, setShowModalViewPDF] = useState<boolean>(false)

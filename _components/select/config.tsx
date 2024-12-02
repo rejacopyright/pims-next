@@ -103,7 +103,7 @@ export const customStyles: any = (sm: any = true, styleOption?: any) => ({
     borderColor: styleOption?.control?.borderColor || '#4CAF50',
     padding: sm ? 3 : 5,
     cursor: 'pointer',
-    minHeight: 10,
+    minHeight: 40,
     boxShadow: 'unset',
     fontSize,
     backgroundColor:

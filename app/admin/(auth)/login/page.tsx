@@ -56,10 +56,10 @@ const Login = ({ searchParams }) => {
           Cookies.set(`token_${prefix}`, token, { expires: moment.unix(payload?.exp).toDate() })
           setRole('admin')
           setAdmin(user)
-          router.push(nextRequest ? atob(nextRequest) : `/${prefix}`)
-          // setTimeout(() => {
-          //   window.location.href = nextRequest ? atob(nextRequest) : `/${prefix}`
-          // }, 300)
+          // router.push(nextRequest ? atob(nextRequest) : `/${prefix}`)
+          setTimeout(() => {
+            window.location.href = nextRequest ? atob(nextRequest) : `/${prefix}`
+          }, 300)
         }
       })
       .catch((err: any) => {

@@ -4,6 +4,8 @@ import '@metronic/assets/sass/style.scss'
 import '@styles/custom.scss'
 import '@styles/pims.scss'
 import '@styles/splash-screen.css'
+import 'suneditor/dist/css/suneditor.min.css'
+import '@components/form/custom.scss'
 
 import axios from '@api/axios'
 import { DotFlash } from '@components/loader/dots'

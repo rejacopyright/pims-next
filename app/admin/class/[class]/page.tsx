@@ -3,7 +3,7 @@ import { Sticky } from '@components/cards/Sticky'
 import { FilterDate } from '@components/filter/Calendar'
 import { Searchbox } from '@components/form'
 import Table from '@components/table'
-import { isDev } from '@helpers'
+import { isDev, toCapitalize } from '@helpers'
 import { useLocation } from '@hooks'
 import omit from 'lodash/omit'
 import moment from 'moment'
@@ -135,7 +135,7 @@ const Filter: FC<any> = () => {
               <div className='col-auto'>
                 <div
                   className='d-flex flex-center gap-6px bg-primary border border-gray-300 radius-5 h-36px px-16px cursor-pointer'
-                  onClick={() => router.push(pathname)}>
+                  onClick={() => router.push(`${pathname}/create`)}>
                   <i className='fas fa-plus fs-16px text-white' />
                   <div className='fw-bolder lh-1 text-nowrap text-white'>Tambah Program</div>
                 </div>
@@ -172,10 +172,10 @@ const Filter: FC<any> = () => {
 const Index: FC<any> = ({ params }) => {
   const thisParams: any = use(params)
   const classType = thisParams?.class
-  console.log(classType)
 
   return (
     <div className='content'>
+      <title>{`Kelas ${toCapitalize(classType === 'studio' ? 'Studio' : classType === 'functional' ? 'Fungsional' : 'Studio')}`}</title>
       <Filter />
       <div className='d-flex align-items-center gap-8px fs-16px fw-500 my-10px'>
         <div className='fs-12px'>Total</div>
