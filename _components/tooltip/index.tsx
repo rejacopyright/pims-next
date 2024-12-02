@@ -1,5 +1,3 @@
-import './style.scss'
-
 import { FC } from 'react'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Tooltip from 'react-bootstrap/Tooltip'

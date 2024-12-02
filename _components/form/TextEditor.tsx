@@ -22,6 +22,7 @@ interface Props {
   className?: any
   options?: SunEditorOptions
   setContent?: boolean
+  disabled?: boolean
 }
 
 let Index: FC<Props> = ({
@@ -35,8 +36,12 @@ let Index: FC<Props> = ({
   className = 'p-1 border border-gray-300 radius-5',
   options = {},
   setContent = true,
+  disabled = false,
 }) => {
   const editor: any = useRef()
+  if (disabled) {
+    className = ''
+  }
 
   const getSunEditorInstance: any = (sunEditor: any) => {
     // editor?.current?.destroy?.()
@@ -104,6 +109,8 @@ let Index: FC<Props> = ({
     <div className={className}>
       <SunEditor
         getSunEditorInstance={getSunEditorInstance}
+        disable={disabled}
+        hideToolbar={disabled}
         width='100%'
         height={height}
         placeholder={placeholder}
