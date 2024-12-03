@@ -12,16 +12,6 @@ const Index: FC<any> = () => {
       <div className='position-fixed bottom-0 w-100'>
         <div className='shadow-sm border-top border-gray-200 bg-white p-2'>
           <div className='row'>
-            <Link href='/gallery' className='col text-center'>
-              <KTSVG
-                path={`/media/icons/custom/icon_1${path?.startsWith('/gallery') ? '_active' : ''}.svg`}
-                svgClassName='w-35px h-35px'
-              />
-              <div
-                className={`fs-9 lh-1 mt-1 text-${path?.startsWith('/gallery') ? 'primary' : 'dark'} mt-2`}>
-                {translate('MENU.MOBILE.GALLERY')}
-              </div>
-            </Link>
             <Link href='/submission' className='col text-center'>
               <KTSVG
                 path={`/media/icons/custom/icon_2${path?.startsWith('/submission') ? '_active' : ''}.svg`}

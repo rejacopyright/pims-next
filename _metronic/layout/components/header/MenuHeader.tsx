@@ -148,7 +148,7 @@ export const MenuHeader: FC<any> = ({ sidebar, canMobilePageGoBack }) => {
                           pathname?.match(/(gallery)\/[a-zA-Z0-9]/gi) ||
                           /^\/(issuer+)\/([\w.%+-]+)\/(badges*$)/i.test(pathname),
                       })}
-                      href='/gallery'
+                      href='#'
                       scroll={false}>
                       배지 갤러리
                     </Link>

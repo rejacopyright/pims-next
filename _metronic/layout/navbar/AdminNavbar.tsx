@@ -56,17 +56,6 @@ const Index: FC<any> = () => {
                 Notification
               </div>
             </Link>
-            <Link href={`${APP_ADMIN_PATH}/profile`} className='col text-center'>
-              <KTSVG
-                path={`/media/icons/communication/com006.svg`}
-                className={`svg-icon-${path?.startsWith(`${APP_ADMIN_PATH}/profile`) ? 'primary' : 'gray-400'}`}
-                svgClassName='w-30px h-30px'
-              />
-              <div
-                className={`fs-9 lh-1 mt-1 text-${path?.startsWith(`${APP_ADMIN_PATH}/profile`) ? 'primary' : 'dark'}`}>
-                Profile
-              </div>
-            </Link>
           </div>
         </div>
       </div>

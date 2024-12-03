@@ -4,8 +4,6 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { FLUSH, PAUSE, PERSIST, persistStore, PURGE, REGISTER, REHYDRATE } from 'redux-persist'
 
 import { authReducer, persistedAuthReducer } from './reducers/auth'
-import { galleryReducer, persistedGalleryReducer } from './reducers/gallery'
-import { persistedProfileReducer, profileReducer } from './reducers/profile'
 import { tokenReducer } from './reducers/token'
 import { persistedWalletReducer, walletReducer } from './reducers/wallet'
 
@@ -13,8 +11,6 @@ import { persistedWalletReducer, walletReducer } from './reducers/wallet'
 const allReducers = combineReducers({
   user: persistedAuthReducer(),
   wallet: persistedWalletReducer(),
-  profile: persistedProfileReducer(),
-  gallery: persistedGalleryReducer(),
 })
 
 // Store - Redux
@@ -54,11 +50,3 @@ export const logout = () => store.dispatch(logoutApp())
 // WALLET DISPATCHER
 export const { setWalletDetail: updateWalletDetail } = walletReducer?.actions
 export const setWalletDetail = (e: any) => store.dispatch(updateWalletDetail(e))
-
-// PROFILE DISPATCHER
-export const { setTmpEmail: updateTmpEmail } = profileReducer?.actions
-export const setTmpEmail = (e: any) => store.dispatch(updateTmpEmail(e))
-
-// GALLERY DISPATCHER
-export const { setTotalItems } = galleryReducer?.actions
-export const setGalleryTotalItems = (e: any) => store.dispatch(setTotalItems(e))

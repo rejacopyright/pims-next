@@ -72,24 +72,6 @@ const MobileMenuDrawer: FC<any> = () => {
                     </div>
                   </Link>
                 </div>
-                <div className='col-6 px-10px my-10px'>
-                  <Link
-                    href='/profile'
-                    className='d-flex flex-center border border-gray-300 radius-15 bg-white'
-                    style={{ height: '150px' }}>
-                    <div className=''>
-                      <div
-                        className='d-flex flex-center bg-light-orange radius-5 mx-auto'
-                        style={{ width: '36px', height: '36px', border: '1px solid #f7ae86' }}>
-                        <KTSVG
-                          path='/media/icons/custom/contact.svg'
-                          svgClassName='w-18px h-18px'
-                        />
-                      </div>
-                      <div className='fw-600 fs-22px mt-20px text-gray-800'>나의 지갑</div>
-                    </div>
-                  </Link>
-                </div>
               </div>
               <Link
                 href='/policy'
