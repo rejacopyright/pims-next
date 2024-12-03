@@ -52,6 +52,7 @@ export interface SelectTypes {
   isDisabled?: any
   isMulti?: any
   styleOption?: StyleTypes
+  SingleValueElement?: any
   DropdownElement?: any
   ClearElement?: any
   MultiValueElement?: any
@@ -201,6 +202,9 @@ export const customStyles: any = (sm: any = true, styleOption?: any) => ({
     return { ...provided, lineHeight, ...styleOption?.input }
   },
 })
+export const SingleValue = ({ children, ...props }: any) => {
+  return <components.SingleValue {...props}>{children}</components.SingleValue>
+}
 export const DropdownIndicator = ({ element, ...props }: any) => {
   return (
     <components.DropdownIndicator {...props}>

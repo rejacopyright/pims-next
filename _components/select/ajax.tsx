@@ -12,6 +12,7 @@ import {
   DropdownIndicator,
   MultiValueRemove,
   SelectTypes,
+  SingleValue,
 } from './config'
 
 const SelectAjax: any = (
@@ -38,6 +39,7 @@ const SelectAjax: any = (
     isDisabled = false,
     isMulti = false,
     styleOption = {},
+    SingleValueElement,
     DropdownElement,
     ClearElement,
     MultiValueElement,
@@ -186,6 +188,7 @@ const SelectAjax: any = (
         inputId={id}
         styles={customStyles(sm, styleOption)}
         components={{
+          SingleValue: SingleValueElement || SingleValue,
           DropdownIndicator: DropdownElement || DropdownIndicator,
           ClearIndicator: ClearElement || ClearIndicator,
           MultiValueRemove: MultiValueElement || MultiValueRemove,

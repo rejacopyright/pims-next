@@ -43,6 +43,22 @@ const Index: FC<any> = () => {
           hasBullet={true}
         />
       </AsideMenuItemWithSub>
+      <AsideMenuItemWithSub
+        to={`${APP_ADMIN_PATH}/open-class`}
+        title='Buka Kelas'
+        fontIcon='bi-user'
+        icon='/media/icons/abstract/abs038.svg'>
+        <AsideMenuItem
+          to={`${APP_ADMIN_PATH}/open-class/studio`}
+          title='Kelas Studio'
+          hasBullet={true}
+        />
+        <AsideMenuItem
+          to={`${APP_ADMIN_PATH}/open-class/functional`}
+          title='Kelas Fungsional'
+          hasBullet={true}
+        />
+      </AsideMenuItemWithSub>
     </>
   )
 }

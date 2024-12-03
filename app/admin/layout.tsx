@@ -1,4 +1,7 @@
 'use client'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+
 import { ErrorBoundaryPage } from '@components/layouts/ErrorBoundary'
 import { defineRole } from '@components/layouts/LayoutConfig'
 import ModalUpdateProfile from '@components/modal/ModalUpdateProfile'

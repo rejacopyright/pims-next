@@ -43,6 +43,7 @@ const Index: FC<any> = ({ params }) => {
   const queryClient = useQueryClient()
   const searchParams = useSearchParams()
   const queryParams = parse(searchParams.toString() || '', { ignoreQueryPrefix: true })
+  const { page = 1, limit = 5 } = queryParams
   const classType = thisParams?.class
 
   const [tmpDetail, setTmpDetail] = useState<any>()
@@ -53,6 +54,8 @@ const Index: FC<any> = ({ params }) => {
   const dataClassQueryParams: any = {
     service_id: classType,
     q: queryParams?.q || '',
+    page,
+    limit,
   }
 
   const dataClassQuery: any = useQuery({
