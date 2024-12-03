@@ -3,10 +3,10 @@ import ax from 'axios'
 import Cookies from 'js-cookie'
 import qs from 'qs'
 
-export const API_SERVER: string = 'http://localhost:4000'
+export const API_SERVER: string = process.env.REACT_APP_SERVER || 'http://localhost:4000'
 
 const axios = ax.create({
-  baseURL: `${process.env.REACT_APP_SERVER || API_SERVER + '/api/v1'}/`,
+  baseURL: `${API_SERVER + '/api/v1'}/`,
   withCredentials: false,
   headers: {
     Accept: 'application/json, text/plain, */*',
