@@ -1,7 +1,6 @@
 'use client'
-import { loginUserInfo } from '@api/__MOCK/login'
 import { login as loginUser } from '@api/auth'
-import { APP_ADMIN_PATH, APP_MODE, APP_NAME, configClass, getJWTPayload } from '@helpers'
+import { APP_ADMIN_PATH, APP_NAME, configClass, getJWTPayload } from '@helpers'
 import { setAdmin, setRole } from '@redux'
 import clsx from 'clsx'
 import { Field, Form, Formik, FormikProps } from 'formik'
@@ -9,7 +8,6 @@ import Cookies from 'js-cookie'
 import moment from 'moment'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { use, useState } from 'react'
 import * as Yup from 'yup'
 
@@ -30,7 +28,6 @@ const loginSchema: any = Yup.object().shape({
 
 const Login = ({ searchParams }) => {
   const prefix: any = location?.pathname?.slice(1)?.split('/')?.[0] || ''
-  const router = useRouter()
   const params: any = use(searchParams)
   const { email = '', request } = params || {}
   const nextRequest: any = request
@@ -64,27 +61,11 @@ const Login = ({ searchParams }) => {
       })
       .catch((err: any) => {
         const message: any = err?.response?.data?.message || err?.message || ''
-        const code = err?.response?.data?.code
         setStatus(message)
-        router.push(
-          `${APP_ADMIN_PATH}/login/error?email=${values?.email}&code=${code}&message=${message}`,
-          {
-            scroll: false,
-          }
-        )
       })
       .finally(() => {
         setLoading(false)
       })
-
-    if (APP_MODE === 'test') {
-      Cookies.set(`token`, 'token', { expires: moment().add(2, 'h').toDate() })
-      setAdmin(loginUserInfo)
-      setStatus(null)
-      setTimeout(() => {
-        window.location.href = nextRequest ? atob(nextRequest) : APP_ADMIN_PATH
-      }, 300)
-    }
   }
 
   return (
