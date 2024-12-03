@@ -31,15 +31,6 @@ export const NavbarDesktop = ({ _language, scrollY }: any) => {
         </div>
       </div>
       <div className='d-flex flex-row-reverse justify-content-end-reverse column flex-fill gap-7 align-items-center'>
-        {/* {token && userID ? (
-          <Link href='/wallet' className='btn btn-primary py-2 px-7'>
-            My Wallet
-          </Link>
-        ) : (
-          <Link href={`${APP_ADMIN_PATH}/login`} className='btn btn-primary py-2 px-7'>
-            Login
-          </Link>
-        )} */}
         {/* <Dropdown className='mx-n5'>
           <Dropdown.Toggle className='bg-white' size={'sm'} variant=''>
             <img className='w-15px h-15px rounded-1' src={language?.flag} alt='metronic' />

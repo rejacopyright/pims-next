@@ -5,12 +5,10 @@ import { FLUSH, PAUSE, PERSIST, persistStore, PURGE, REGISTER, REHYDRATE } from 
 
 import { authReducer, persistedAuthReducer } from './reducers/auth'
 import { tokenReducer } from './reducers/token'
-import { persistedWalletReducer, walletReducer } from './reducers/wallet'
 
 // Reducers
 const allReducers = combineReducers({
   user: persistedAuthReducer(),
-  wallet: persistedWalletReducer(),
 })
 
 // Store - Redux
@@ -46,7 +44,3 @@ export const setTrainer = (e: any) => store.dispatch(updateTrainer(e))
 export const setAdmin = (e: any) => store.dispatch(updateAdmin(e))
 export const setRole = (e: DataTypes['role']) => store.dispatch(dispatchRole(e))
 export const logout = () => store.dispatch(logoutApp())
-
-// WALLET DISPATCHER
-export const { setWalletDetail: updateWalletDetail } = walletReducer?.actions
-export const setWalletDetail = (e: any) => store.dispatch(updateWalletDetail(e))
