@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'pims-nextjs',
+      name: 'pims-next',
       exec_mode: 'cluster',
       watch: ['build'],
       // Delay between restart
@@ -18,7 +18,7 @@ module.exports = {
       },
       env_prod: {
         APP_ENV: 'prod', // APP_ENV=prod
-        PORT: 5000,
+        PORT: 3000,
       },
     },
   ],
