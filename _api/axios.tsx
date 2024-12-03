@@ -3,7 +3,7 @@ import ax from 'axios'
 import Cookies from 'js-cookie'
 import qs from 'qs'
 
-export const API_SERVER: string = process.env.REACT_APP_SERVER || 'http://localhost:4000'
+export const API_SERVER: string = process.env.NEXT_PUBLIC_API || 'http://localhost:4000'
 
 const axios = ax.create({
   baseURL: `${API_SERVER + '/api/v1'}/`,
