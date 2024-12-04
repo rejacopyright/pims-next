@@ -43,7 +43,7 @@ export const Filter: FC<any> = () => {
         <div className='page-filter pt-14px'>
           <div className='d-flex flex-wrap align-items-center justify-content-lg-between bg-white p-18px radius-10 shadow-xs gap-20px'>
             {/* PART 1 */}
-            <div className='d-flex flex-wrap align-items-center gap-12px mb-4 mb-lg-0'>
+            <div className='d-none flex-wrap align-items-center gap-12px mb-4 mb-lg-0'>
               <div className='fs-14px fw-600 text-nowrap'>Pilih Tanggal</div>
               <div className='d-flex flex-center gap-5px'>
                 <div
@@ -69,12 +69,12 @@ export const Filter: FC<any> = () => {
             </div>
             {/* PART 2 */}
             <div className='d-flex flex-wrap align-items-center gap-12px col'>
-              <div className='col'>
+              <div className='col-auto'>
                 <Searchbox
                   size='sm'
                   controlled
                   placeholder='Cari program kelas'
-                  className='radius-5 w-auto'
+                  className='radius-5 w-400px'
                   height={36}
                   delay={1000}
                   defaultValue={q}
@@ -104,7 +104,7 @@ export const Filter: FC<any> = () => {
                   <div className='fw-bolder lh-1 text-nowrap'>Reset</div>
                 </div>
               </div>
-              <div className='col-auto'>
+              <div className='col-auto ms-auto'>
                 <div
                   className='d-flex flex-center gap-6px bg-primary border border-gray-300 radius-5 h-36px px-16px cursor-pointer'
                   onClick={() => router.push(`${pathname}/create`)}>
