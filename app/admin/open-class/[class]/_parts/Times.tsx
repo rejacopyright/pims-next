@@ -42,7 +42,7 @@ export const Times: FC<any> = () => {
     queryKey: ['getOpenClass', { dataClassQueryParams }],
     queryFn: () => getOpenClass(classType, dataClassQueryParams),
     select: ({ data }: any) => {
-      const res: any = (data || []).map((item) => {
+      const res: any = (data?.data || []).map((item) => {
         const newItem = item
         newItem.start_date = moment(item?.start_date).format('YYYY-MM-DD HH:mm')
         newItem.end_date = moment(item?.end_date).format('YYYY-MM-DD HH:mm')
