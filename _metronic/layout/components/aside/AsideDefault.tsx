@@ -74,7 +74,7 @@ const AsideDefault: FC<any> = ({ sidebar }) => {
       {/* begin::Footer */}
       <div className='aside-footer flex-column-auto pt-5 pb-7 px-5' id='kt_aside_footer'>
         <div className='btn btn-custom btn-primary w-100'>
-          <span className='btn-label'>Docs & Components</span>
+          <span className='btn-label'>Docx & Components</span>
           <span className='svg-icon btn-icon svg-icon-2'>
             <KTSVG path='/media/icons/general/gen005.svg' />
           </span>
