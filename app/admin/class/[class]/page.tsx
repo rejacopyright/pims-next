@@ -96,9 +96,7 @@ const Index: FC<any> = ({ params }) => {
           data={dataClass}
           pagination
           total={dataClassTotal}
-          columnClasses={{
-            number: 'text-center',
-          }}
+          columnClasses={{}}
           headers={[
             { value: 'image', label: '#', className: 'text-start px-20px', width: 0, sort: false },
             { value: 'name', label: 'Nama Program', className: 'text-start', sort: false },
@@ -106,6 +104,11 @@ const Index: FC<any> = ({ params }) => {
           ]}
           tdClass='px-20px py-10px fs-13px'
           render={(e: any, _original: any) => ({
+            name: () => (
+              <Tooltip active title={e?.toString()}>
+                <div className='w-500px text-truncate'>{e}</div>
+              </Tooltip>
+            ),
             image: () => {
               const images = _original?.class_gallery
               if (images?.length) {

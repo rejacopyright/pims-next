@@ -1,4 +1,4 @@
-import { deleteClass } from '@api/class'
+import { deleteOpenClass } from '@api/class'
 import { ToastMessage } from '@components/toast'
 import { useQueryClient } from '@tanstack/react-query'
 import { FC, useEffect, useState } from 'react'
@@ -22,12 +22,12 @@ const Index: FC<{
   const handleDelete = () => {
     if (data?.id) {
       setBtnLoading(true)
-      queryClient.resetQueries({ queryKey })
-      deleteClass(data?.id)
+      deleteOpenClass(data?.id)
         .then(({ data }: any) => {
           if (data?.status === 'success') {
             ToastMessage({ type: 'success', message: data?.message })
             setShow(false)
+            queryClient.resetQueries({ queryKey })
           }
         })
         .catch((err: any) => {
@@ -50,10 +50,10 @@ const Index: FC<{
       onHide={() => setShow(false)}>
       <Modal.Body className='p-0'>
         <div className=''>
-          <div className='p-15px d-flex flex-center h-100px'>
+          <div className='p-15px d-flex flex-center' style={{ minHeight: '100px' }}>
             <div className='text-center fs-14px'>
               <span className=''>Apakah anda yakin ingin menghapus</span>
-              <span className='fw-bolder mx-5px'>{data?.name}</span>
+              <span className='fw-bolder mx-5px'>{data?.class?.name}</span>
               <span className=''>?</span>
             </div>
           </div>

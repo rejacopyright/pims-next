@@ -38,6 +38,7 @@ const validationSchema = Yup.object().shape({
     .test('trainer_id', 'Trainer wajib diisi', (e: any) => e?.value || typeof e === 'string')
     .nullable(),
   quota: Yup.number().min(1, 'Mminimal 1').required('Kuota wajib diisi'),
+  fee: Yup.number().min(1, 'Mminimal 1').required('Fee wajib diisi'),
 })
 
 const Index: FC<{
@@ -54,16 +55,19 @@ const Index: FC<{
 
   const [submitBtnIsLoading, setSubmitBtnIsLoading] = useState<boolean>(false)
 
-  const initialValues = {
-    class_id: {},
-    trainer_id: {},
-    fee: '',
-    quota: '',
+  const initialValues: any = {
+    class_id: detail?.class?.id ? { value: detail?.class?.id, label: detail?.class?.name } : {},
+    trainer_id: detail?.trainer?.id
+      ? { value: detail?.trainer?.id, label: detail?.trainer?.full_name }
+      : {},
+    fee: detail?.fee || '',
+    quota: detail?.quota || '',
   }
 
   const formik = useFormik({
     initialValues,
     validationSchema,
+    validateOnMount: false,
     onSubmit: async (val: any) => {
       setSubmitBtnIsLoading(true)
 
@@ -102,7 +106,7 @@ const Index: FC<{
 
   const detailClassQuery: any = useQuery({
     // initialData: {data: []},
-    enabled: show && Boolean(formik?.values?.class_id?.value),
+    enabled: show && Boolean(formik?.values?.class_id?.value) && Boolean(!detail?.id),
     queryKey: ['getDetailClass', { id: formik?.values?.class_id?.value }],
     queryFn: async () => {
       const api = await getDetailClass(formik?.values?.class_id?.value as string)
@@ -115,10 +119,6 @@ const Index: FC<{
     const detailClass = detailClassQuery?.data
     const detailTrainer = detailClass?.default_trainer || {}
     const full_name = `${detailTrainer?.first_name} ${detailTrainer?.last_name}`
-    // formik.setFieldValue(
-    //   'trainer_id',
-    //   detailTrainer?.id ? { value: detailTrainer?.id, label: full_name } : {}
-    // )
     formik.setValues((prev) => ({
       ...prev,
       trainer_id: detailTrainer?.id ? { value: detailTrainer?.id, label: full_name } : {},
@@ -128,8 +128,8 @@ const Index: FC<{
   }, [detailClassQuery?.data])
 
   useEffect(() => {
-    if (!show) {
-      formik.resetForm()
+    if (show && detail?.quota) {
+      formik.setFieldValue('quota', detail?.quota)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [show])
@@ -140,13 +140,22 @@ const Index: FC<{
       dialogClassName='modal-md'
       contentClassName='radius-15'
       show={show}
-      onHide={() => setShow(false)}>
+      onHide={() => {
+        setShow(false)
+        formik.setValues({
+          class_id: {},
+          trainer_id: {},
+          fee: '',
+          quota: '',
+        })
+        formik.resetForm()
+      }}>
       <Modal.Body className='p-0'>
         <form action='' onSubmit={formik.handleSubmit}>
           <div
             className='p-15px fw-bold fs-14px border-bottom bg-gray-100'
             style={{ borderRadius: '15px 15px 0 0' }}>
-            Buka Kelas
+            {isEdit ? 'Update Kelas' : 'Buka Kelas'}
           </div>
           <div className='px-15px'>
             <div className='row'>
@@ -154,14 +163,16 @@ const Index: FC<{
                 <div className={configClass?.label}>Pilih Kelas</div>
                 <SelectAjax
                   api={classType === 'studio' ? getStudioClass : getFunctionalClass}
-                  reload={formik.values?.class_id?.value}
+                  reload={detail?.class_id}
                   sm={true}
                   name='class_id'
                   // className='w-100'
                   isClearable={false}
                   placeholder='Pilih Kelas'
                   defaultValue={
-                    formik.values?.class_id?.value ? formik.values?.class_id : undefined
+                    detail?.class_id
+                      ? { value: detail?.class?.id, label: detail?.class?.name }
+                      : undefined
                   }
                   parse={(e: any) => {
                     const img = e?.class_gallery?.length
@@ -184,7 +195,7 @@ const Index: FC<{
                           background: `#fff url(${e?.img}) center / cover no-repeat`,
                         }}
                       />
-                      <div className=''>{e?.label}</div>
+                      <div className='col'>{e?.label}</div>
                     </div>
                   )}
                   styleOption={{
@@ -212,13 +223,13 @@ const Index: FC<{
                 <div className='' style={{ width: '120px' }}>
                   <div className={configClass?.label}>Kuota</div>
                   <InputCurrency
-                    defaultValue={formik.values?.quota}
+                    defaultValue={initialValues?.quota}
                     placeholder='Kuota'
                     onChange={(e: any) => {
                       formik.setFieldValue('quota', e?.floatValue || '')
                     }}
                   />
-                  {formik?.errors?.quota && (
+                  {formik?.errors?.quota && Boolean(!formik?.values?.quota) && (
                     <div className={configClass.formError}>{formik?.errors?.quota?.toString()}</div>
                   )}
                 </div>
@@ -229,14 +240,18 @@ const Index: FC<{
                 <div className={configClass?.label}>Pilih Trainer</div>
                 <SelectAjax
                   api={getTrainer}
-                  reload={formik.values?.class_id?.value}
+                  reload={detail?.trainer?.value || formik?.values?.class_id?.value}
                   sm={true}
                   name='trainer_id'
                   // className='w-100'
                   isClearable={false}
                   placeholder='Pilih Trainer'
                   defaultValue={
-                    formik.values?.trainer_id?.value ? formik.values?.trainer_id : undefined
+                    detail?.trainer_id
+                      ? { value: detail?.trainer?.id, label: detail?.trainer?.full_name }
+                      : formik?.values?.trainer_id?.value
+                        ? formik?.values?.trainer_id
+                        : {}
                   }
                   parse={(e: any) => {
                     const img = e?.avatar
@@ -285,13 +300,16 @@ const Index: FC<{
               <div className='col my-10px'>
                 <div className={configClass?.label}>Harga Program</div>
                 <InputCurrency
-                  defaultValue={formik.values?.fee}
+                  defaultValue={isEdit ? initialValues?.fee : formik?.values?.fee}
                   prefix='Rp.'
                   placeholder='Masukan Harga'
                   onChange={(e: any) => {
-                    formik.setFieldValue('fee', e?.floatValue || 0)
+                    formik.setFieldValue('fee', e?.floatValue || '')
                   }}
                 />
+                {formik?.errors?.fee && (
+                  <div className={configClass.formError}>{formik?.errors?.fee?.toString()}</div>
+                )}
               </div>
             </div>
           </div>
@@ -304,7 +322,11 @@ const Index: FC<{
               disabled={submitBtnIsLoading}
               className='btn btn-sm btn-primary fs-14px'>
               {!submitBtnIsLoading ? (
-                'Buat Kelas'
+                isEdit ? (
+                  'Update Kelas'
+                ) : (
+                  'Buka Kelas'
+                )
               ) : (
                 <span className='indicator-progress d-block'>
                   Waiting...

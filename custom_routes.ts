@@ -16,10 +16,6 @@ export const rewrites = [
   //   destination: '/public/badge/:pathname',
   // },
   // {
-  //   source: '/public/user/badge/:pathname*',
-  //   destination: '/wallet/detail/:pathname*',
-  // },
-  // {
   //   source: '/policy',
   //   destination: '/public/policy',
   // },

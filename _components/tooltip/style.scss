@@ -22,6 +22,6 @@ $placements: (
   .bs-tooltip-#{$key} .tooltip-arrow::before,
   .bs-tooltip-auto[data-popper-placement^='#{$val}'] .tooltip-arrow::before {
     border-#{$val}-color: rgba(0, 0, 0, 1) !important;
-    box-shadow: 0px -5px 1px 1px rgba(0, 0, 0, 0.15);
+    // box-shadow: 0px -5px 1px 1px rgba(0, 0, 0, 0.15);
   }
 }

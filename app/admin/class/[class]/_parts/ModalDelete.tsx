@@ -22,12 +22,12 @@ const Index: FC<{
   const handleDelete = () => {
     if (data?.id) {
       setBtnLoading(true)
-      queryClient.resetQueries({ queryKey })
       deleteClass(data?.id)
         .then(({ data }: any) => {
           if (data?.status === 'success') {
             ToastMessage({ type: 'success', message: data?.message })
             setShow(false)
+            queryClient.resetQueries({ queryKey })
           }
         })
         .catch((err: any) => {

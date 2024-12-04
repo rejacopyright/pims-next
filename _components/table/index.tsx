@@ -14,7 +14,7 @@ import { TablePagination } from './pagination'
 export interface TableHeaderProps {
   value: string
   label: string
-  width?: number
+  width?: number | string
   sort?: boolean
   colSpan?: number
   className?: string

@@ -9,7 +9,7 @@
     "deploy": "next build && pm2 startOrRestart pm2.config.js --env prod",
     "deploy:server": "next build && PM2_HOME=/root/.pm2 pm2 startOrRestart pm2.config.js --env prod",
     "lint": "next lint",
-    "lint:fix": "next lint --fix",
+    "lint:fix": "next lint --fix --no-ignore",
     "lint:quiet": "next lint --quiet",
     "lint:strict": "next lint --fix --max-warnings=0",
     "export": "next build && next export",
