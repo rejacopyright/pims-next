@@ -52,6 +52,7 @@ export const Times: FC<any> = () => {
     },
   })
   const dataOpenClass: any = dataOpenClassQuery?.data || []
+  console.log(dataOpenClass)
 
   return (
     <>
