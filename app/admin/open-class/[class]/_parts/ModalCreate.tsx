@@ -10,13 +10,14 @@ import { getTrainer } from '@api/users'
 import InputCurrency from '@components/form/InputCurrency'
 import { Select as SelectAjax } from '@components/select/ajax'
 import { SingleValue } from '@components/select/config'
+import { Select as SelectData } from '@components/select/select'
 import { ToastMessage } from '@components/toast'
 import { configClass } from '@helpers'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useFormik } from 'formik'
 import moment, { Moment } from 'moment'
 import { useParams } from 'next/navigation'
-import { FC, useEffect, useState } from 'react'
+import { FC, useEffect, useMemo, useState } from 'react'
 import { Modal } from 'react-bootstrap'
 import * as Yup from 'yup'
 
@@ -28,6 +29,7 @@ interface FormValues {
   quota?: number
   start_date?: Moment
   end_date?: Moment
+  session?: number
 }
 
 const validationSchema = Yup.object().shape({
@@ -38,14 +40,15 @@ const validationSchema = Yup.object().shape({
     .test('trainer_id', 'Trainer wajib diisi', (e: any) => e?.value || typeof e === 'string')
     .nullable(),
   quota: Yup.number().min(1, 'Mminimal 1').required('Kuota wajib diisi'),
-  fee: Yup.number().min(1, 'Mminimal 1').required('Fee wajib diisi'),
+  session: Yup.number().min(1, 'Mminimal 1').required('Sesi wajib diisi'),
+  // fee: Yup.number().min(1, 'Mminimal 1').required('Fee wajib diisi'),
 })
 
 const Index: FC<{
   queryKey?: any[]
   show: boolean
   setShow: (e: boolean) => void
-  selectedTime: any
+  selectedTime?: Moment
   isEdit?: boolean
   detail?: any
 }> = ({ show, setShow, selectedTime, isEdit = false, detail = {}, queryKey }) => {
@@ -62,6 +65,7 @@ const Index: FC<{
       : {},
     fee: detail?.fee || '',
     quota: detail?.quota || '',
+    session: detail?.session || 1,
   }
 
   const formik = useFormik({
@@ -74,11 +78,12 @@ const Index: FC<{
       const params: FormValues = {
         service_id: classType === 'studio' ? 2 : classType === 'functional' ? 3 : 2,
         start_date: moment(selectedTime),
-        end_date: moment(selectedTime).add({ minutes: 30 }),
+        end_date: moment(selectedTime).add({ minutes: 30 * (val?.session || 1) }),
         class_id: val?.class_id?.value,
         trainer_id: val?.trainer_id?.value,
         fee: val?.fee,
         quota: val?.quota,
+        session: val?.session,
       }
 
       const apiInstance =
@@ -130,14 +135,29 @@ const Index: FC<{
   useEffect(() => {
     if (show && detail?.quota) {
       formik.setFieldValue('quota', detail?.quota)
+      formik.setFieldValue('session', detail?.session)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [show])
 
+  const extendedDate = useMemo(() => {
+    if (selectedTime) {
+      return {
+        date: selectedTime?.format('dddd, D MMMM yyyy'),
+        start_time: selectedTime?.format('HH:mm'),
+        end_time: selectedTime
+          ?.clone()
+          ?.add({ minutes: 30 * (formik?.values?.session || 1) })
+          ?.format('HH:mm'),
+      }
+    }
+    return undefined
+  }, [formik?.values?.session, selectedTime])
+
   return (
     <Modal
       centered
-      dialogClassName='modal-md'
+      dialogClassName='modal-lg'
       contentClassName='radius-15'
       show={show}
       onHide={() => {
@@ -155,7 +175,8 @@ const Index: FC<{
           <div
             className='p-15px fw-bold fs-14px border-bottom bg-gray-100'
             style={{ borderRadius: '15px 15px 0 0' }}>
-            {isEdit ? 'Update Kelas' : 'Buka Kelas'}
+            {isEdit ? 'Update Kelas' : 'Buka Kelas'} ({extendedDate?.date} |{' '}
+            {extendedDate?.start_time} - {extendedDate?.end_time})
           </div>
           <div className='px-15px'>
             <div className='row'>
@@ -231,6 +252,42 @@ const Index: FC<{
                   />
                   {formik?.errors?.quota && Boolean(!formik?.values?.quota) && (
                     <div className={configClass.formError}>{formik?.errors?.quota?.toString()}</div>
+                  )}
+                </div>
+              </div>
+              <div className='col-auto my-10px'>
+                <div className='' style={{ width: '150px' }}>
+                  <div className={configClass?.label}>Sesi</div>
+                  <SelectData
+                    sm={true}
+                    name='session'
+                    className='p-0 text-start'
+                    data={Array(10)
+                      .fill('')
+                      .map((_, index: number) => ({
+                        value: index + 1,
+                        label: `${index + 1} Sesi`,
+                      }))}
+                    isClearable={false}
+                    placeholder='Pilih Sesi'
+                    defaultValue={detail?.session || 1}
+                    styleOption={{
+                      control: {
+                        border: '1px solid #eee',
+                        borderRadius: '5px',
+                        // width: 150,
+                        height: 42,
+                      },
+                      placeholder: { color: '#000' },
+                    }}
+                    onChange={(e: any) => {
+                      formik.setFieldValue('session', e?.value)
+                    }}
+                  />
+                  {formik?.errors?.session && Boolean(!formik?.values?.session) && (
+                    <div className={configClass.formError}>
+                      {formik?.errors?.session?.toString()}
+                    </div>
                   )}
                 </div>
               </div>

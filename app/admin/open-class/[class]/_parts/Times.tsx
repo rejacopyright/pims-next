@@ -18,13 +18,6 @@ export const Times: FC<any> = () => {
 
   const { date = moment().format('YYYY-MM-DD') }: any = searchParams || {}
 
-  const openHours = moment(date).set({ hours: 6, minutes: 0, seconds: 0 })
-  const times = Array(32)
-    .fill('')
-    .map((_, index: number) => {
-      return moment(openHours).add(30 * index, 'minutes')
-    })
-
   const [selectedTime, setSelectedTime] = useState<Moment | undefined>()
   const [showModalCreate, setShowModalCreate] = useState<boolean>(false)
   const [showModalView, setShowModalView] = useState<boolean>(false)
@@ -52,7 +45,32 @@ export const Times: FC<any> = () => {
     },
   })
   const dataOpenClass: any = dataOpenClassQuery?.data || []
-  console.log(dataOpenClass)
+
+  const openHours = moment(date).set({ hours: 6, minutes: 0, seconds: 0 })
+  const closingHours = moment(date).set({ hours: 21, minutes: 30, seconds: 0 })
+  let idx = 0
+  const times = Array(32)
+    .fill('')
+    .map((_, _index: number) => {
+      idx++
+      let thisTime = moment(openHours).add(30 * (idx - 1), 'minutes')
+      const hasClass = dataOpenClass?.find(
+        ({ start_date }) =>
+          start_date ===
+          moment(openHours)
+            .add(30 * (idx - 2), 'minutes')
+            .format('YYYY-MM-DD HH:mm')
+      )
+      if (hasClass?.session > 1) {
+        thisTime = moment(openHours).add({ minutes: 30 * (idx - 2) + 30 * hasClass?.session })
+        idx = idx + hasClass?.session
+      }
+      if (thisTime.isAfter(closingHours)) {
+        return null
+      }
+      return thisTime
+    })
+    .filter((f) => f !== null)
 
   return (
     <>
@@ -67,8 +85,11 @@ export const Times: FC<any> = () => {
               ({ start_date }) => start_date === thisTime.format('YYYY-MM-DD HH:mm')
             )
 
+            const colXL = (hasClass?.session || 1) * 2 > 12 ? 12 : (hasClass?.session || 1) * 2
+            const colSM = (hasClass?.session || 1) * 3 > 12 ? 12 : (hasClass?.session || 1) * 3
+            const colXS = hasClass?.session > 1 ? 12 : 6
             return (
-              <div key={index} className='col-6 col-sm-3 col-xl-2 my-7px'>
+              <div key={index} className={`col-${colXS} col-sm-${colSM} col-xl-${colXL} my-7px`}>
                 <button type='button' disabled={isPastTime} className='h-100 btn m-0 p-0 w-100'>
                   <div className={`h-100 mx-5px ${hasClass ? 'p-10px border radius-15' : ''}`}>
                     <div
@@ -76,6 +97,11 @@ export const Times: FC<any> = () => {
                       <div
                         className={`btn ${hasClass && !isPastTime ? 'btn-primary' : 'btn-light text-dark'} btn-flex flex-center w-100`}>
                         {item.format('HH:mm')}
+                        {hasClass?.session > 1 &&
+                          ` - ${item
+                            ?.clone()
+                            ?.add({ minutes: 30 * hasClass?.session })
+                            ?.format('HH:mm')}`}
                       </div>
                       {!hasClass && !isPastTime && (
                         <div
