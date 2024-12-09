@@ -1,4 +1,4 @@
-import { toCurrency } from '@helpers'
+import { toCapitalize, toCurrency } from '@helpers'
 import { FC } from 'react'
 import { Modal } from 'react-bootstrap'
 
@@ -42,9 +42,31 @@ const Index: FC<{
             <div className='col-12 my-10px'>
               <div className='bg-gray-200 py-5px px-10px fw-bold'>Peserta</div>
             </div>
-            <div className='col-12 mb-15px'>
-              <div className='fw-bold fs-14px'>{detail?.class?.name}</div>
-            </div>
+            {detail?.transaction?.length > 0 && (
+              <div className='col-12'>
+                <table>
+                  <tbody>
+                    {detail?.transaction?.map((trx: any, index: number) => {
+                      return (
+                        <tr key={index}>
+                          <td className='py-5px'>
+                            <div className='fw-bold fs-14px'>{index + 1}.</div>
+                          </td>
+                          <td className='p-5px'>
+                            <div className='d-flex flex-center gap-5px'>
+                              <div className='fw-bold fs-14px'>
+                                {toCapitalize(trx?.user?.full_name || '')}
+                              </div>
+                              <div className='fw-bold fs-12px'>({trx?.user?.full_name})</div>
+                            </div>
+                          </td>
+                        </tr>
+                      )
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            )}
           </div>
         </div>
         <div className='border-top border-2 p-15px d-flex align-items-center justify-content-end gap-10px'>

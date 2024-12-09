@@ -88,12 +88,20 @@ export const Times: FC<any> = () => {
             const colXL = (hasClass?.session || 1) * 2 > 12 ? 12 : (hasClass?.session || 1) * 2
             const colSM = (hasClass?.session || 1) * 3 > 12 ? 12 : (hasClass?.session || 1) * 3
             const colXS = hasClass?.session > 1 ? 12 : 6
+
             return (
               <div key={index} className={`col-${colXS} col-sm-${colSM} col-xl-${colXL} my-7px`}>
                 <button type='button' disabled={isPastTime} className='h-100 btn m-0 p-0 w-100'>
                   <div className={`h-100 mx-5px ${hasClass ? 'p-10px border radius-15' : ''}`}>
                     <div
                       className={`position-relative text-center border ${!hasClass ? 'h-100' : ''} ${hasClass && !isPastTime ? 'border-primary' : 'border-gray-300'} p-5px radius-10`}>
+                      {!isPastTime && hasClass && hasClass?.transaction?.length > 0 && (
+                        <div className='position-absolute' style={{ top: '-10px', right: '-10px' }}>
+                          <div className='d-flex flex-center w-30px h-30px bg-danger radius-50 text-white fs-13px'>
+                            {hasClass?.transaction?.length || 0}
+                          </div>
+                        </div>
+                      )}
                       <div
                         className={`btn ${hasClass && !isPastTime ? 'btn-primary' : 'btn-light text-dark'} btn-flex flex-center w-100`}>
                         {item.format('HH:mm')}
@@ -136,30 +144,34 @@ export const Times: FC<any> = () => {
                                 <div className='fas fa-eye' />
                               </div>
                             </Tooltip>
-                            <Tooltip placement='top' title='Edit kelas'>
-                              <div
-                                className='btn btn-light-warning btn-flex flex-center p-0 w-30px h-30px radius-50'
-                                onClick={(e) => {
-                                  e.stopPropagation()
-                                  setSelectedTime(thisTime)
-                                  setIsEdit(true)
-                                  setTmpDetail(hasClass)
-                                  setShowModalCreate(true)
-                                }}>
-                                <div className='fas fa-pen-alt' />
-                              </div>
-                            </Tooltip>
-                            <Tooltip placement='auto' title='Hapus kelas'>
-                              <div
-                                className='btn btn-light-danger btn-flex flex-center p-0 w-30px h-30px radius-50'
-                                onClick={(e) => {
-                                  e.stopPropagation()
-                                  setTmpDetail(hasClass)
-                                  setShowModalDelete(true)
-                                }}>
-                                <div className='fas fa-trash-alt' />
-                              </div>
-                            </Tooltip>
+                            {!hasClass?.transaction?.length && (
+                              <>
+                                <Tooltip placement='top' title='Edit kelas'>
+                                  <div
+                                    className='btn btn-light-warning btn-flex flex-center p-0 w-30px h-30px radius-50'
+                                    onClick={(e) => {
+                                      e.stopPropagation()
+                                      setSelectedTime(thisTime)
+                                      setIsEdit(true)
+                                      setTmpDetail(hasClass)
+                                      setShowModalCreate(true)
+                                    }}>
+                                    <div className='fas fa-pen-alt' />
+                                  </div>
+                                </Tooltip>
+                                <Tooltip placement='auto' title='Hapus kelas'>
+                                  <div
+                                    className='btn btn-light-danger btn-flex flex-center p-0 w-30px h-30px radius-50'
+                                    onClick={(e) => {
+                                      e.stopPropagation()
+                                      setTmpDetail(hasClass)
+                                      setShowModalDelete(true)
+                                    }}>
+                                    <div className='fas fa-trash-alt' />
+                                  </div>
+                                </Tooltip>
+                              </>
+                            )}
                           </div>
                         )}
                       </div>
