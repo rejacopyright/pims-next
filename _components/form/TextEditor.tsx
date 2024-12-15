@@ -5,7 +5,7 @@
 
 import { useDeepEffect } from '@hooks'
 import dynamic from 'next/dynamic'
-import { FC, memo, useMemo, useRef } from 'react'
+import { FC, memo, useMemo, useRef, useState } from 'react'
 // import {renderToString} from 'react-dom/server'
 import { SunEditorOptions } from 'suneditor/src/options'
 const SunEditor = dynamic(() => import('suneditor-react'), { ssr: false })
@@ -63,8 +63,8 @@ let Index: FC<Props> = ({
       // ['strike', 'subscript', 'superscript'],
       ['align', 'horizontalRule', 'list', 'lineHeight'],
       [
-        'table',
-        'link',
+        // 'table',
+        // 'link',
         // 'image',
       ],
       // ['showBlocks', 'codeView'],
@@ -85,6 +85,7 @@ let Index: FC<Props> = ({
     []
   )
 
+  const [data, setData] = useState<any>()
   useDeepEffect(() => {
     if (loading) {
       editor?.current?.disable?.()
@@ -93,13 +94,14 @@ let Index: FC<Props> = ({
       editor?.current?.enable?.()
       editor?.current?.core?.closeLoading?.()
     }
+    setData(defaultData)
   }, [defaultData, loading])
 
-  useDeepEffect(() => {
-    if (!loading && editor?.current && options) {
-      editor?.current?.setOptions?.(options)
-    }
-  }, [options, loading])
+  // useDeepEffect(() => {
+  //   if (!loading && editor?.current && options) {
+  //     editor?.current?.setOptions?.(options)
+  //   }
+  // }, [options, loading])
 
   // setTimeout(() => {
   //   editor?.current?.core?.focus?.()
@@ -114,13 +116,13 @@ let Index: FC<Props> = ({
         width='100%'
         height={height}
         placeholder={placeholder}
-        defaultValue={defaultData || ''}
+        defaultValue={data || ''}
         // defaultValue='<div><br />&nbsp;</div>'
         onImageUploadBefore={(files: any) => {
           setTimeout(() => editor?.current?.core?.focus?.(), 1000)
           return files
         }}
-        setContents={setContent ? defaultData : ''} // setContent = true, will be show defaultData on module custom email template
+        setContents={setContent ? data : ''} // setContent = true, will be show defaultData on module custom email template
         setDefaultStyle='font-family: inherit'
         setOptions={{
           placeholder: '',
@@ -139,6 +141,7 @@ let Index: FC<Props> = ({
           addTagsWhitelist: '*',
           defaultTag: 'div',
           buttonList: buttonList,
+          ...options,
           // icons: {
           //   // editor?.current?.core?.icons
           //   bold: renderToString(<i className='fas fa-eye text-dark' />),

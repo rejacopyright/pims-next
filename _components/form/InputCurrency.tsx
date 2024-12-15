@@ -5,6 +5,7 @@ import { NumericFormat } from 'react-number-format'
 interface Props {
   defaultValue?: any
   prefix?: any
+  suffix?: any
   min?: number
   max?: number | undefined
   onChange?: (e?: any) => void
@@ -12,6 +13,7 @@ interface Props {
   placeholder?: string
   readOnly?: boolean
   autoFocus?: boolean
+  reload?: boolean
 }
 
 const Index = forwardRef<HTMLInputElement, Props>(
@@ -19,6 +21,7 @@ const Index = forwardRef<HTMLInputElement, Props>(
     {
       defaultValue = '',
       prefix = undefined,
+      suffix = undefined,
       min = 0,
       max = undefined,
       onChange = () => '',
@@ -26,6 +29,7 @@ const Index = forwardRef<HTMLInputElement, Props>(
       placeholder = '',
       readOnly = false,
       autoFocus = false,
+      reload = false,
     }: Props,
     ref
   ) => {
@@ -39,7 +43,7 @@ const Index = forwardRef<HTMLInputElement, Props>(
         val = min
       }
       setValue(val)
-    }, [defaultValue, min, max])
+    }, [defaultValue, min, max, reload])
 
     return (
       <div className='input-group input-group-solid d-flex align-items-center bg-gray-100 border border-gray-300 overflow-hidden'>
@@ -81,6 +85,13 @@ const Index = forwardRef<HTMLInputElement, Props>(
           placeholder={placeholder}
           autoFocus={autoFocus}
         />
+        {suffix && (
+          <div className='pe-5 ps-3 d-flex h-100 flex-center'>
+            <button type='button' className='btn btn-icon w-25px h-25px radius-5'>
+              {suffix}
+            </button>
+          </div>
+        )}
       </div>
     )
   }

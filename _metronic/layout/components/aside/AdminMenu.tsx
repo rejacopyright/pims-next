@@ -59,6 +59,13 @@ const Index: FC<any> = () => {
           hasBullet={true}
         />
       </AsideMenuItemWithSub>
+      <AsideMenuItemWithSub
+        to={`${APP_ADMIN_PATH}/member`}
+        title='Member'
+        fontIcon='bi-user'
+        icon='/media/icons/general/gen026.svg'>
+        <AsideMenuItem to={`${APP_ADMIN_PATH}/member/package`} title='Paket' hasBullet={true} />
+      </AsideMenuItemWithSub>
     </>
   )
 }

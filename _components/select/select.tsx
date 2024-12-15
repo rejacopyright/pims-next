@@ -88,7 +88,7 @@ const SelectField: any = (
         closeMenuOnSelect={multiple ? false : true}
         controlShouldRenderValue
         isClearable={isClearable}
-        value={value ? options?.find((f: any) => f?.value === value) : ''}
+        value={value || value === 0 ? options?.find((f: any) => f?.value === value) : ''}
         inputValue={query}
         options={options}
         onInputChange={onInputChange}
