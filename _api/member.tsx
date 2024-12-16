@@ -37,3 +37,35 @@ export const getDetailMemberPackage = (id?: string) => {
     url: `member/package/${id}/detail`,
   })
 }
+
+// ITEMS
+export const getMemberItems = (member_id?: string, params?: any) => {
+  return axios({
+    method: 'get',
+    url: `member/items/${member_id}`,
+    params,
+  })
+}
+
+export const addMemberItem = (data: any) => {
+  return axios({
+    method: 'post',
+    url: `member/items/create`,
+    data,
+  })
+}
+
+export const updateMemberItem = (id: string, data: any) => {
+  return axios({
+    method: 'put',
+    url: `member/items/${id}/update`,
+    data,
+  })
+}
+
+export const deleteMemberItem = (id: string) => {
+  return axios({
+    method: 'delete',
+    url: `member/items/${id}/delete`,
+  })
+}

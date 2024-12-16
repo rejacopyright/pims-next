@@ -3,7 +3,7 @@ import { API_SERVER } from '@api/axios'
 import { getClass } from '@api/class'
 import Table from '@components/table'
 import Tooltip from '@components/tooltip'
-import { APP_ADMIN_PATH, isDev, toCapitalize } from '@helpers'
+import { APP_ADMIN_PATH, isDev, toCapitalize, toCurrency } from '@helpers'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { parse } from 'qs'
@@ -43,7 +43,7 @@ const Index: FC<any> = ({ params }) => {
   const queryClient = useQueryClient()
   const searchParams = useSearchParams()
   const queryParams = parse(searchParams.toString() || '', { ignoreQueryPrefix: true })
-  const { page = 1, limit = 5 } = queryParams
+  const { page = '1', limit = '5' } = queryParams
   const classType = thisParams?.class
 
   const [tmpDetail, setTmpDetail] = useState<any>()
@@ -105,9 +105,20 @@ const Index: FC<any> = ({ params }) => {
           tdClass='px-20px py-10px fs-13px'
           render={(e: any, _original: any) => ({
             name: () => (
-              <Tooltip active title={e?.toString()}>
-                <div className='w-500px text-truncate'>{e}</div>
-              </Tooltip>
+              <>
+                <div className='text-wrap'>{e}</div>
+                <div className='fs-11px d-flex align-items-center gap-10px'>
+                  <div className='text-primary'>Rp. {toCurrency(_original?.default_fee)}</div>
+                  <div className='text-gray-300'>|</div>
+                  <div className='text-gray-500'>
+                    {_original?.gender === 1
+                      ? 'Pria'
+                      : _original?.gender === 2
+                        ? 'Wanita'
+                        : 'Campuran'}
+                  </div>
+                </div>
+              </>
             ),
             image: () => {
               const images = _original?.class_gallery

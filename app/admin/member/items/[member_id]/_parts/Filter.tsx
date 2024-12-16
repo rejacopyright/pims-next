@@ -7,7 +7,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { parse, stringify } from 'qs'
 import { FC, useState } from 'react'
 
-export const Filter: FC<any> = () => {
+export const Filter: FC<any> = ({ hasVisit, onClickAdd = () => '' }) => {
   const pathname: any = usePathname()
   const searchParamsFn = useSearchParams()
   const searchParams = parse(searchParamsFn.toString() || '', { ignoreQueryPrefix: true })
@@ -74,7 +74,7 @@ export const Filter: FC<any> = () => {
                   size='sm'
                   controlled
                   placeholder='Cari nama paket'
-                  className='radius-5 w-400px'
+                  className='radius-5 w-300px'
                   height={36}
                   delay={1000}
                   defaultValue={q}
@@ -96,20 +96,38 @@ export const Filter: FC<any> = () => {
                   }}
                 />
               </div>
-              <div className='col-auto'>
+              {/* <div className='col-auto'>
                 <div
                   className='d-flex flex-center gap-6px bg-white border border-gray-300 radius-5 h-36px px-16px cursor-pointer'
                   onClick={() => router.push(pathname)}>
                   <i className='las la-redo-alt fs-16px text-dark' />
                   <div className='fw-bolder lh-1 text-nowrap'>Reset</div>
                 </div>
-              </div>
+              </div> */}
               <div className='col-auto ms-auto'>
+                {!hasVisit && (
+                  <div
+                    className='d-flex flex-center gap-6px btn btn-sm btn-white border border-gray-300 radius-5 h-36px px-16px cursor-pointer'
+                    onClick={() => onClickAdd(1)}>
+                    <i className='fas fa-plus fs-16px text-dark' />
+                    <div className='fw-bolder lh-1 text-nowrap text-dark'>Visit</div>
+                  </div>
+                )}
+              </div>
+              <div className='col-auto'>
                 <div
-                  className='d-flex flex-center gap-6px bg-primary border border-gray-300 radius-5 h-36px px-16px cursor-pointer'
-                  onClick={() => router.push(`${pathname}/create`)}>
-                  <i className='fas fa-plus fs-16px text-white' />
-                  <div className='fw-bolder lh-1 text-nowrap text-white'>Tambah Paket</div>
+                  className='d-flex flex-center gap-6px btn btn-sm btn-white border border-gray-300 radius-5 h-36px px-16px cursor-pointer'
+                  onClick={() => onClickAdd(2)}>
+                  <i className='fas fa-plus fs-16px text-dark' />
+                  <div className='fw-bolder lh-1 text-nowrap text-dark'>Kelas Studio</div>
+                </div>
+              </div>
+              <div className='col-auto'>
+                <div
+                  className='d-flex flex-center gap-6px btn btn-sm btn-white border border-gray-300 radius-5 h-36px px-16px cursor-pointer'
+                  onClick={() => onClickAdd(3)}>
+                  <i className='fas fa-plus fs-16px text-dark' />
+                  <div className='fw-bolder lh-1 text-nowrap text-dark'>Kelas Fungsional</div>
                 </div>
               </div>
             </div>

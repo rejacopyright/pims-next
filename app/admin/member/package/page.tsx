@@ -2,7 +2,7 @@
 import { getMemberPackage } from '@api/member'
 import Table from '@components/table'
 import Tooltip from '@components/tooltip'
-import { APP_ADMIN_PATH, isDev } from '@helpers'
+import { APP_ADMIN_PATH, isDev, toCurrency } from '@helpers'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { parse } from 'qs'
@@ -66,75 +66,103 @@ const Index: FC<any> = () => {
           data={dataMemberPackage}
           pagination
           total={dataMemberPackageTotal}
-          columnClasses={{}}
+          columnClasses={{ level: 'text-center' }}
           headers={[
+            { value: 'level', label: 'Level', className: 'text-center', width: 0, sort: false },
             { value: 'image', label: '#', className: 'text-start px-20px', width: 0, sort: false },
             { value: 'name', label: 'Nama Program', className: 'text-start', sort: false },
+            { value: 'quota', label: 'Limit', className: 'text-start', width: 0, sort: false },
             { value: 'actions', label: '', className: 'text-center', width: 0, sort: false },
           ]}
           tdClass='px-20px py-10px fs-13px'
-          render={(e: any, _original: any) => ({
-            name: () => (
-              <Tooltip active title={e?.toString()}>
-                <div className='w-500px text-truncate'>{e}</div>
-              </Tooltip>
-            ),
-            image: () => {
-              if (_original?.badge) {
+          render={(e: any, _original: any) => {
+            return {
+              name: () => (
+                <>
+                  <div className=''>{e}</div>
+                  <div className='fs-11px text-primary'>Rp. {toCurrency(_original?.fee)}</div>
+                  <div className='fs-11px text-gray-600'>
+                    {toCurrency(_original?.duration)} hari
+                  </div>
+                </>
+              ),
+              quota: () => (
+                <>
+                  <div className='fs-11px'>
+                    <span className='text-gray-500'>Visit: </span>
+                    {_original?.quota_visit_per_day || 'Unlimited'}
+                  </div>
+                  <div className='fs-11px'>
+                    <span className='text-gray-500'>Kelas: </span>
+                    {_original?.quota_class_per_day || 'Unlimited'}
+                  </div>
+                </>
+              ),
+              image: () => {
+                if (_original?.badge) {
+                  return (
+                    <div
+                      className='w-50px h-50px radius-5 border'
+                      style={{
+                        background: `#fff url(${_original?.badge}) center / cover no-repeat`,
+                      }}
+                    />
+                  )
+                } else {
+                  return (
+                    <div
+                      className='w-50px h-50px radius-5 border'
+                      style={{
+                        background: `#fff url(/media/placeholder/blank-image.svg) center / cover no-repeat`,
+                      }}
+                    />
+                  )
+                }
+              },
+              actions: () => {
                 return (
-                  <div
-                    className='w-50px h-50px radius-5 border'
-                    style={{
-                      background: `#fff url(${_original?.badge}) center / cover no-repeat`,
-                    }}
-                  />
-                )
-              } else {
-                return (
-                  <div
-                    className='w-50px h-50px radius-5 border'
-                    style={{
-                      background: `#fff url(/media/placeholder/blank-image.svg) center / cover no-repeat`,
-                    }}
-                  />
-                )
-              }
-            },
-            actions: () => {
-              return (
-                <div className='d-flex flex-center gap-10px'>
-                  <Tooltip placement='top' title='Lihat kelas'>
+                  <div className='d-flex flex-center gap-10px'>
                     <div
-                      className='btn btn-light-primary btn-flex flex-center p-0 w-30px h-30px radius-50'
+                      className='btn btn-sm btn-light-primary btn-flex flex-center gap-5px radius-50 border border-primary py-7px'
                       onClick={() => {
-                        router.push(`${APP_ADMIN_PATH}/member/package/view/${_original?.id}`)
+                        router.push(`${APP_ADMIN_PATH}/member/items/${_original?.id}`)
                       }}>
-                      <div className='fas fa-eye' />
+                      <div className='fas fa-wrench' />
+                      <div className='fe-bold'>Kelola Program</div>
                     </div>
-                  </Tooltip>
-                  <Tooltip placement='top' title='Edit kelas'>
-                    <div
-                      className='btn btn-light-warning btn-flex flex-center p-0 w-30px h-30px radius-50'
-                      onClick={() =>
-                        router.push(`${APP_ADMIN_PATH}/member/package/create?id=${_original?.id}`)
-                      }>
-                      <div className='fas fa-pen-alt' />
-                    </div>
-                  </Tooltip>
-                  <Tooltip placement='auto' title='Hapus kelas'>
-                    <div
-                      className='btn btn-light-danger btn-flex flex-center p-0 w-30px h-30px radius-50'
-                      onClick={() => {
-                        setTmpDetail(_original)
-                        setShowModalDelete(true)
-                      }}>
-                      <div className='fas fa-trash-alt' />
-                    </div>
-                  </Tooltip>
-                </div>
-              )
-            },
-          })}
+                    <Tooltip placement='top' title='Lihat paket'>
+                      <div
+                        className='btn btn-light-primary btn-flex flex-center p-0 w-30px h-30px radius-50'
+                        onClick={() => {
+                          router.push(`${APP_ADMIN_PATH}/member/package/view/${_original?.id}`)
+                        }}>
+                        <div className='fas fa-eye' />
+                      </div>
+                    </Tooltip>
+                    <Tooltip placement='top' title='Edit paket'>
+                      <div
+                        className='btn btn-light-warning btn-flex flex-center p-0 w-30px h-30px radius-50'
+                        onClick={() =>
+                          router.push(`${APP_ADMIN_PATH}/member/package/create?id=${_original?.id}`)
+                        }>
+                        <div className='fas fa-pen-alt' />
+                      </div>
+                    </Tooltip>
+                    <Tooltip placement='auto' title='Hapus paket'>
+                      <div
+                        className='btn btn-light-danger btn-flex flex-center p-0 w-30px h-30px radius-50'
+                        onClick={() => {
+                          setTmpDetail(_original)
+                          setShowModalDelete(true)
+                        }}>
+                        <div className='fas fa-trash-alt' />
+                      </div>
+                    </Tooltip>
+                  </div>
+                )
+              },
+            }
+          }}
         />
       </div>
 
@@ -143,7 +171,7 @@ const Index: FC<any> = () => {
         show={showModalDelete}
         setShow={setShowModalDelete}
         detail={tmpDetail}
-        queryKey={['getMemberPackage', { dataMemberPackageQueryParams }]}
+        queryKey={['getMemberPackage', dataMemberPackageQueryParams]}
       />
     </div>
   )
