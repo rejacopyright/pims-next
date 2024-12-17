@@ -44,7 +44,25 @@ axios.interceptors.request.use(
 )
 axios.interceptors.response.use(
   (res: any) => res,
-  (error: any) => Promise.reject(error)
+  (error: any) => {
+    if (error?.response?.status === 401) {
+      const prefix: any = location?.pathname?.slice(1)?.split('/')?.[0] || ''
+      const guardedItems: string[] = ['ally-supports-cache']
+      if (localStorage) {
+        Object.keys(localStorage)
+          ?.filter((x: any) => !guardedItems?.includes(x))
+          ?.forEach((item: any) => {
+            localStorage.removeItem(item)
+          })
+      }
+      const token = Cookies.get(`token_${prefix}`)
+      if (token) {
+        Cookies.remove(`token_${prefix}`)
+        // window.location.reload()
+      }
+    }
+    return Promise.reject(error)
+  }
 )
 
 export default axios
