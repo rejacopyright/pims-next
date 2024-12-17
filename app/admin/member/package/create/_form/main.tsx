@@ -157,7 +157,7 @@ const Index: FC<FormProps> = ({ formik }) => {
         <TextEditor
           options={{ minHeight: '250px' }}
           placeholder='Tulis Syarat & Ketentuan disini...'
-          defaultData={formik?.values?.description || ''}
+          defaultData={formik?.values?.tnc || ''}
           onChange={(e: any) => {
             formik.setFieldValue('tnc', e)
           }}

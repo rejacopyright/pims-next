@@ -32,7 +32,7 @@ const CardEdit: FC<any> = ({ item, indexes, onChange = () => '', onDelete = () =
       <div className='h-2px bg-primary' />
       <div className='px-15px py-5px'>
         {mode === 'view' ? (
-          <div className=''>
+          <div className='d-flex justify-content-between'>
             <div className='row align-items-center'>
               <div className='col-auto text-center my-10px'>
                 <div className='bg-gray-100 px-3 py-1 radius-5'>
@@ -42,14 +42,8 @@ const CardEdit: FC<any> = ({ item, indexes, onChange = () => '', onDelete = () =
               </div>
               <div className='col-auto my-10px'>
                 <div className='bg-gray-100 px-3 py-1 radius-5'>
-                  <div className={configClass.label}>Title</div>
+                  <div className={configClass.label}>Feature</div>
                   <div className=''>{tmpValue?.title || ''}</div>
-                </div>
-              </div>
-              <div className='col-auto my-10px'>
-                <div className='bg-gray-100 px-3 py-1 radius-5'>
-                  <div className={configClass.label}>Subtitle</div>
-                  <div className=''>{tmpValue?.sub_title || ''}</div>
                 </div>
               </div>
               <div className='col-auto my-10px'>
@@ -58,12 +52,18 @@ const CardEdit: FC<any> = ({ item, indexes, onChange = () => '', onDelete = () =
                   <div className=''>{tmpValue?.value || ''}</div>
                 </div>
               </div>
+              <div className='col-auto my-10px'>
+                <div className='bg-gray-100 px-3 py-1 radius-5'>
+                  <div className={configClass.label}>Subtitle</div>
+                  <div className=''>{tmpValue?.sub_title || ''}</div>
+                </div>
+              </div>
             </div>
-            <div className='row'>
+            <div className='row flex-nowrap'>
               <div className='col-auto ms-auto my-10px'>
                 <button
                   type='button'
-                  className='btn btn-flex flex-center h-40px btn-light-danger mt-24px'
+                  className='btn btn-flex flex-center h-40px btn-light-danger'
                   onClick={() => onDelete(item)}>
                   <i className='fas fa-trash-alt' />
                   <span className=''>Hapus</span>
@@ -72,7 +72,7 @@ const CardEdit: FC<any> = ({ item, indexes, onChange = () => '', onDelete = () =
               <div className='col-auto my-10px'>
                 <button
                   type='button'
-                  className='btn btn-flex flex-center h-40px btn-light-warning mt-24px'
+                  className='btn btn-flex flex-center h-40px btn-light-warning'
                   onClick={() => setMode('edit')}>
                   <i className='fas fa-pen' />
                   <span className=''>Edit</span>
@@ -107,6 +107,17 @@ const CardEdit: FC<any> = ({ item, indexes, onChange = () => '', onDelete = () =
                 onChange={(e) => setValue('index', parseInt(e?.floatValue))}
               />
             </div>
+            <div className='col-lg-6 my-10px'>
+              <div className={configClass?.label}>Feature</div>
+              <input
+                // ref={(e: any) => (featuresRef.current.title = e)}
+                type='text'
+                placeholder='Masukan Feature'
+                className={configClass?.form}
+                value={tmpValue?.title || ''}
+                onChange={(e) => setValue('title', e?.target?.value)}
+              />
+            </div>
             <div className='col-lg-4 my-10px'>
               <div className={configClass?.label}>Value</div>
               <input
@@ -116,17 +127,6 @@ const CardEdit: FC<any> = ({ item, indexes, onChange = () => '', onDelete = () =
                 className={configClass?.form}
                 value={tmpValue?.value || ''}
                 onChange={(e) => setValue('value', e?.target?.value)}
-              />
-            </div>
-            <div className='col-lg-6 my-10px'>
-              <div className={configClass?.label}>Title</div>
-              <input
-                // ref={(e: any) => (featuresRef.current.title = e)}
-                type='text'
-                placeholder='Masukan Title'
-                className={configClass?.form}
-                value={tmpValue?.title || ''}
-                onChange={(e) => setValue('title', e?.target?.value)}
               />
             </div>
             <div className='col-lg my-10px'>
@@ -226,6 +226,17 @@ const Index: FC<FormProps> = ({ formik }) => {
               onChange={(e) => setValue('index', parseInt(e?.floatValue))}
             />
           </div>
+          <div className='col-lg-6 my-10px'>
+            <div className={configClass?.label}>Feature</div>
+            <input
+              // ref={(e: any) => (featuresRef.current.title = e)}
+              type='text'
+              placeholder='Masukan Feature'
+              className={configClass?.form}
+              value={tmpValue?.title || ''}
+              onChange={(e) => setValue('title', e?.target?.value)}
+            />
+          </div>
           <div className='col-lg-4 my-10px'>
             <div className={configClass?.label}>Value</div>
             <input
@@ -235,17 +246,6 @@ const Index: FC<FormProps> = ({ formik }) => {
               className={configClass?.form}
               value={tmpValue?.value || ''}
               onChange={(e) => setValue('value', e?.target?.value)}
-            />
-          </div>
-          <div className='col-lg-6 my-10px'>
-            <div className={configClass?.label}>Title</div>
-            <input
-              // ref={(e: any) => (featuresRef.current.title = e)}
-              type='text'
-              placeholder='Masukan Title'
-              className={configClass?.form}
-              value={tmpValue?.title || ''}
-              onChange={(e) => setValue('title', e?.target?.value)}
             />
           </div>
           <div className='col-lg my-10px'>
