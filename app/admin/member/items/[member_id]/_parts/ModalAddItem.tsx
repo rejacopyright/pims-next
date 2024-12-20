@@ -275,7 +275,7 @@ const Index: FC<{
               ) : (
                 <>
                   <i className='fas fa-plus p-0 text-white fs-14px mb-1px' />
-                  <div className='fs-14px me-5px'>Tambahkan</div>
+                  <div className='fs-14px me-5px'>{detail?.id ? 'Ubah' : 'Tambahkan'}</div>
                 </>
               )}
             </button>
