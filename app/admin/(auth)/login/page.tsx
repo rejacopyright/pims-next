@@ -1,5 +1,5 @@
 'use client'
-import { login as loginUser } from '@api/auth'
+import { loginAdmin } from '@api/auth'
 import { APP_ADMIN_PATH, APP_NAME, configClass, getJWTPayload } from '@helpers'
 import { setAdmin, setRole } from '@redux'
 import clsx from 'clsx'
@@ -43,7 +43,7 @@ const Login = ({ searchParams }) => {
   const handleOnSubmit = (values) => {
     localStorage.removeItem(`persist:${prefix}`)
     setLoading(true)
-    loginUser({ username: values?.email, password: values?.password })
+    loginAdmin({ username: values?.email, password: values?.password })
       .then(async ({ data }: any) => {
         const { user, token } = data || {}
         const payload: any = getJWTPayload(token)

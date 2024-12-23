@@ -53,7 +53,7 @@ const Index: FC<{
                             <div className='fw-bold fs-14px'>{index + 1}.</div>
                           </td>
                           <td className='p-5px'>
-                            <div className='d-flex flex-center gap-5px'>
+                            <div className='d-flex align-items-center gap-5px'>
                               <div className='fw-bold fs-14px'>
                                 {toCapitalize(trx?.user?.full_name || '')}
                               </div>
