@@ -75,6 +75,7 @@ const SelectField: any = (
           ref={ref as any}
           formatOptionLabel={formatOptionLabel}
           inputId={id}
+          menuPortalTarget={document?.body}
           styles={customStyles(sm, styleOption)}
           components={{ ...comp, DropdownIndicator, ClearIndicator, MultiValueRemove }}
           name={name}

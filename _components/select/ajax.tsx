@@ -184,6 +184,7 @@ const SelectAjax: any = (
     <div className={className}>
       <ReactSelect
         ref={ref}
+        menuPortalTarget={document?.body}
         formatOptionLabel={formatOptionLabel}
         inputId={id}
         styles={customStyles(sm, styleOption)}

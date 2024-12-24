@@ -202,6 +202,7 @@ const SelectAjax: any = (
       <ReactSelect
         ref={ref}
         inputId={id}
+        menuPortalTarget={document?.body}
         styles={customStyles(true, {})}
         components={{ DropdownIndicator, ClearIndicator }}
         name={name}

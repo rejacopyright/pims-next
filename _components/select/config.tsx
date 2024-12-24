@@ -145,7 +145,7 @@ export const customStyles: any = (sm: any = true, styleOption?: any) => ({
     boxShadow: '0 1px hsla(0,0%,0%,0.1), 0 1px 5px hsla(0,0%,0%,0.1)',
     ...styleOption?.menu,
   }),
-  menuPortal: (provided: any) => ({ ...provided, zIndex: 1000 }),
+  menuPortal: (provided: any) => ({ ...provided, zIndex: 1200 }),
   indicatorSeparator: (provided: any, _state: any) => ({
     ...provided,
     display: 'none',
