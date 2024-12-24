@@ -21,12 +21,12 @@ const Index: FC<any> = () => {
           </span>
         </div>
       </div>
-      <AsideMenuItem
+      {/* <AsideMenuItem
         to={`${APP_ADMIN_PATH}/other`}
         icon='/media/icons/general/gen043.svg'
         title='Other'
         fontIcon='bi-app-indicator'
-      />
+      /> */}
       <AsideMenuItemWithSub
         to={`${APP_ADMIN_PATH}/class`}
         title='Kelas'
@@ -65,6 +65,19 @@ const Index: FC<any> = () => {
         fontIcon='bi-user'
         icon='/media/icons/general/gen026.svg'>
         <AsideMenuItem to={`${APP_ADMIN_PATH}/member/package`} title='Paket' hasBullet={true} />
+      </AsideMenuItemWithSub>
+      <AsideMenuItemWithSub
+        to={`${APP_ADMIN_PATH}/user`}
+        title='User'
+        fontIcon='bi-user'
+        icon='/media/icons/communication/com013.svg'>
+        <AsideMenuItem
+          to={`${APP_ADMIN_PATH}/user/regular`}
+          title='User Reguler'
+          hasBullet={true}
+        />
+        <AsideMenuItem to={`${APP_ADMIN_PATH}/user/member`} title='Member' hasBullet={true} />
+        <AsideMenuItem to={`${APP_ADMIN_PATH}/user/trainer`} title='Trainer' hasBullet={true} />
       </AsideMenuItemWithSub>
     </>
   )

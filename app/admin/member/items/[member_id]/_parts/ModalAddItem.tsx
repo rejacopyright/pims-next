@@ -8,7 +8,7 @@ import { ToastMessage } from '@components/toast'
 import { configClass } from '@helpers'
 import { useQueryClient } from '@tanstack/react-query'
 import { useFormik } from 'formik'
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { Modal } from 'react-bootstrap'
 import * as Yup from 'yup'
 
@@ -41,9 +41,16 @@ const Index: FC<{
   member_id: any
   detail: any
   queryKey: any[]
-}> = ({ show, setShow, classType, member_id, detail, queryKey }) => {
+}> = ({ show, setShow, classType, member_id, detail: data, queryKey }) => {
   const queryClient = useQueryClient()
+  const [detail, setDetail] = useState<any>()
   const [submitBtnIsLoading, setSubmitBtnIsLoading] = useState<boolean>(false)
+
+  useEffect(() => {
+    if (show) {
+      setDetail(data)
+    }
+  }, [show, data])
 
   const initialValues: any = {
     class_id: detail?.class?.id
@@ -115,12 +122,13 @@ const Index: FC<{
       onHide={() => {
         setShow(false)
         formik.resetForm()
-        formik.setValues((prev) => ({
-          ...prev,
-          isFree: true,
-          isUnlimited: true,
-          class_id: undefined,
-        }))
+        setDetail(undefined)
+        // formik.setValues((prev) => ({
+        //   ...prev,
+        //   isFree: true,
+        //   isUnlimited: true,
+        //   class_id: undefined,
+        // }))
       }}>
       <Modal.Body className='p-0'>
         <form action='' onSubmit={formik.handleSubmit}>
