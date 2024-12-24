@@ -9,6 +9,7 @@ import * as Yup from 'yup'
 
 interface FormValues {
   role_id: number
+  ref: number
   email: string
   username: string
   first_name: string
@@ -114,9 +115,10 @@ const Index: FC<{
     enableReinitialize: true,
     validationSchema: data?.id ? editSchema : addSchema,
     onSubmit: async (val: any) => {
-      // setSubmitBtnIsLoading(true)
+      setSubmitBtnIsLoading(true)
       const params: FormValues = {
         role_id: 1,
+        ref: 2,
         email: val?.email || '',
         username: val?.username || '',
         first_name: val?.first_name || '',

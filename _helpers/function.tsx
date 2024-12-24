@@ -1,6 +1,9 @@
 'use client'
 import langKeys from '@metronic/i18n/messages/en.json'
+import { saveAs } from 'file-saver'
+import moment from 'moment'
 import { useIntl } from 'react-intl'
+import * as xlsx from 'xlsx'
 
 export function getJWTPayload(token: any) {
   if (token) {
@@ -318,6 +321,15 @@ export const blobToBase64 = (blob) => {
       resolve(reader.result)
     }
   })
+}
+
+export const exportToExcel = ({ fileName, data }: { fileName?: string; data: object[] }) => {
+  const worksheet = xlsx.utils.json_to_sheet(data)
+  const workbook = xlsx.utils.book_new()
+  xlsx.utils.book_append_sheet(workbook, worksheet, 'Sheet1')
+  const excelBuffer = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' })
+  const blob = new Blob([excelBuffer], { type: 'application/octet-stream' })
+  saveAs(blob, `${fileName || moment().unix()}.xlsx`)
 }
 
 export const isDev: boolean = process?.env?.NODE_ENV === 'development'

@@ -38,3 +38,11 @@ export const deleteUser = (id: string) => {
     url: `users/${id}/delete`,
   })
 }
+
+export const importUser = (data) => {
+  return axios({
+    method: 'post',
+    url: `users/create/bulk`,
+    data,
+  })
+}

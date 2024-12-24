@@ -1,13 +1,16 @@
 import { Sticky } from '@components/cards/Sticky'
 import { FilterDate } from '@components/filter/Calendar'
 import { Searchbox } from '@components/form'
+import { exportToExcel } from '@helpers'
 import { useLocation } from '@hooks'
 import omit from 'lodash/omit'
+import moment from 'moment'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { parse, stringify } from 'qs'
 import { FC, useState } from 'react'
+import { Dropdown } from 'react-bootstrap'
 
-export const Filter: FC<any> = ({ onClickAdd = () => '' }) => {
+export const Filter: FC<any> = ({ onClickAdd = () => '', onClickImport = () => '' }) => {
   const pathname: any = usePathname()
   const searchParamsFn = useSearchParams()
   const searchParams = parse(searchParamsFn.toString() || '', { ignoreQueryPrefix: true })
@@ -73,7 +76,7 @@ export const Filter: FC<any> = ({ onClickAdd = () => '' }) => {
                 <Searchbox
                   size='sm'
                   controlled
-                  placeholder='Cari nama paket'
+                  placeholder='Cari user'
                   className='radius-5 w-300px'
                   height={36}
                   delay={1000}
@@ -105,6 +108,46 @@ export const Filter: FC<any> = ({ onClickAdd = () => '' }) => {
                 </div>
               </div> */}
               <div className='col-auto ms-auto' />
+              <div className='col-auto'>
+                <Dropdown>
+                  <Dropdown.Toggle
+                    variant='white'
+                    size='sm'
+                    className='text-dark border border-gray-300 fw-bolder h-36px d-flex align-items-center gap-6px'>
+                    <i className='fas fa-upload fs-11px text-dark' />
+                    <div className='fw-bolder lh-1 text-nowrap text-dark'>Import User</div>
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item onClick={onClickImport}>
+                      <div className='d-flex align-items-center gap-10px py-5px'>
+                        <i className='fas fa-upload fs-10px text-dark' />
+                        <div className='fw-bold lh-1 text-nowrap text-dark'>Import User</div>
+                      </div>
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      onClick={() =>
+                        exportToExcel({
+                          fileName: `${moment().format('[USER-TEMPLATE]_yyyy-MM-DD_HH:mm:ss')}`,
+                          data: [
+                            {
+                              first_name: null,
+                              last_name: null,
+                              phone: null,
+                              username: null,
+                              password: null,
+                              email: null,
+                            },
+                          ],
+                        })
+                      }>
+                      <div className='d-flex align-items-center gap-10px py-5px'>
+                        <i className='fas fa-cloud-download fs-10px text-dark' />
+                        <div className='fw-bold lh-1 text-nowrap text-dark'>Download Template</div>
+                      </div>
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </div>
               <div className='col-auto'>
                 <div
                   className='d-flex flex-center gap-6px btn btn-sm btn-white border border-gray-300 radius-5 h-36px px-16px cursor-pointer'

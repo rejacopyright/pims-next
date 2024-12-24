@@ -29,6 +29,7 @@
     "browser-image-compression": "^2.0.2",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
+    "file-saver": "^2.0.5",
     "formik": "^2.4.6",
     "html-react-parser": "^5.1.18",
     "js-cookie": "^3.0.5",
@@ -62,6 +63,7 @@
     "slick-carousel": "^1.8.1",
     "suneditor": "^2.47.0",
     "suneditor-react": "^3.6.1",
+    "xlsx": "^0.18.5",
     "yup": "^1.4.0"
   },
   "devDependencies": {

@@ -6,14 +6,17 @@ import { isDev } from '@helpers'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useSearchParams } from 'next/navigation'
 import { parse } from 'qs'
-import { FC, useState } from 'react'
+import { FC, useRef, useState } from 'react'
+import * as xlsx from 'xlsx'
 
 import { Filter } from './_parts/Filter'
 import ModalAddItem from './_parts/ModalAdd'
 import ModalDelete from './_parts/ModalDelete'
+import ModalImport from './_parts/ModalImport'
 import ModalView from './_parts/ModalView'
 
 const Index: FC<any> = () => {
+  const fileImportRef = useRef<HTMLInputElement>(null)
   const queryClient = useQueryClient()
   const searchParams = useSearchParams()
   const queryParams = parse(searchParams.toString() || '', { ignoreQueryPrefix: true })
@@ -22,7 +25,9 @@ const Index: FC<any> = () => {
   const [tmpDetail, setTmpDetail] = useState<any>()
   // MODALS
   const [showModalView, setShowModalView] = useState<boolean>(false)
-  const [showModalAddItem, setShowModalAddItem] = useState<boolean>(false)
+  const [showModalAdd, setShowModalAdd] = useState<boolean>(false)
+  const [dataImport, setDataImport] = useState<any[]>([])
+  const [showModalImport, setShowModalImport] = useState<boolean>(false)
   const [showModalDelete, setShowModalDelete] = useState<boolean>(false)
 
   const dataUserRegularQueryParams: any = {
@@ -50,7 +55,43 @@ const Index: FC<any> = () => {
       <Filter
         onClickAdd={() => {
           setTmpDetail(undefined)
-          setShowModalAddItem(true)
+          setShowModalAdd(true)
+        }}
+        onClickImport={() => {
+          fileImportRef.current?.click()
+        }}
+      />
+      <input
+        ref={fileImportRef}
+        type='file'
+        multiple={false}
+        accept='.csv, .xls, .xlsx, application/sheet, application/ms-excel, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        style={{ display: 'none' }}
+        onChange={(e) => {
+          if (e?.target?.files?.length) {
+            const reader = new FileReader()
+            reader.onloadend = async (e) => {
+              const data = e?.target?.result
+              const workbook = xlsx.read(data, { type: 'array' })
+              const sheetName = workbook.SheetNames[0]
+              const worksheet = workbook.Sheets[sheetName]
+              const jsonArr = xlsx.utils.sheet_to_json(worksheet)
+              const result = jsonArr?.map((item: any) => {
+                const newItem: any = item
+                newItem.role_id = 1
+                newItem.ref = 3
+                newItem.phone = item?.phone?.toString()
+                newItem.password = (item?.password || 1234)?.toString()
+                return newItem
+              })
+              await setDataImport(result)
+              setShowModalImport(true)
+            }
+            reader.readAsArrayBuffer(e.target.files[0])
+          }
+          if (fileImportRef.current) {
+            fileImportRef.current.value = ''
+          }
         }}
       />
       <div className='d-flex align-items-center gap-8px fs-16px fw-500 my-10px'>
@@ -134,7 +175,7 @@ const Index: FC<any> = () => {
                         className='btn btn-light-warning btn-flex flex-center p-0 w-30px h-30px radius-50'
                         onClick={() => {
                           new Promise((resolve) => resolve(setTmpDetail(_original))).then(() => {
-                            setShowModalAddItem(true)
+                            setShowModalAdd(true)
                           })
                         }}>
                         <div className='fas fa-pen-alt' />
@@ -157,23 +198,27 @@ const Index: FC<any> = () => {
           }}
         />
       </div>
-
       {/* Modal View */}
       <ModalView show={showModalView} setShow={setShowModalView} detail={tmpDetail} />
-
       {/* Modal Add Item */}
       <ModalAddItem
-        show={showModalAddItem}
-        setShow={setShowModalAddItem}
+        show={showModalAdd}
+        setShow={setShowModalAdd}
         detail={tmpDetail}
         queryKey={['getUserRegular', dataUserRegularQueryParams]}
       />
-
       {/* Modal Delete Item */}
       <ModalDelete
         show={showModalDelete}
         setShow={setShowModalDelete}
         detail={tmpDetail}
+        queryKey={['getUserRegular', dataUserRegularQueryParams]}
+      />
+      {/* Modal Delete Item */}
+      <ModalImport
+        show={showModalImport}
+        setShow={setShowModalImport}
+        data={dataImport}
         queryKey={['getUserRegular', dataUserRegularQueryParams]}
       />
     </div>
