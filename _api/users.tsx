@@ -16,6 +16,14 @@ export const getUserRegular = (params: any) => {
   })
 }
 
+export const getUserMember = (params: any) => {
+  return axios({
+    method: 'get',
+    url: 'users/member',
+    params,
+  })
+}
+
 export const addUser = (data: any) => {
   return axios({
     method: 'post',

@@ -1,5 +1,5 @@
 'use client'
-import { getUserRegular } from '@api/users'
+import { getTrainer } from '@api/users'
 import Table from '@components/table'
 import Tooltip from '@components/tooltip'
 import { isDev } from '@helpers'
@@ -30,28 +30,28 @@ const Index: FC<any> = () => {
   const [showModalImport, setShowModalImport] = useState<boolean>(false)
   const [showModalDelete, setShowModalDelete] = useState<boolean>(false)
 
-  const dataUserRegularQueryParams: any = {
+  const dataTrainerQueryParams: any = {
     q: queryParams?.q || '',
     page,
     limit,
   }
 
-  const dataUserRegularQuery: any = useQuery({
+  const dataTrainerQuery: any = useQuery({
     // initialData: {data: []},
-    queryKey: ['getUserRegular', dataUserRegularQueryParams],
-    queryFn: () => getUserRegular(dataUserRegularQueryParams),
+    queryKey: ['getTrainer', dataTrainerQueryParams],
+    queryFn: () => getTrainer(dataTrainerQueryParams),
     select: ({ data }: any) => {
       const res: any = data || {}
       return res
     },
   })
-  const dataUserRegular: any = dataUserRegularQuery?.data?.data || []
-  const dataUserRegularTotal = dataUserRegularQuery?.data?.total || 0
-  const pageIsLoading: any = !dataUserRegularQuery?.isFetched
+  const dataTrainer: any = dataTrainerQuery?.data?.data || []
+  const dataTrainerTotal = dataTrainerQuery?.data?.total || 0
+  const pageIsLoading: any = !dataTrainerQuery?.isFetched
 
   return (
     <div className='content'>
-      <title>User | Regular</title>
+      <title>Trainer</title>
       <Filter
         onClickAdd={() => {
           setTmpDetail(undefined)
@@ -78,7 +78,7 @@ const Index: FC<any> = () => {
               const jsonArr = xlsx.utils.sheet_to_json(worksheet)
               const result = jsonArr?.map((item: any) => {
                 const newItem: any = item
-                newItem.role_id = 1
+                newItem.role_id = 3
                 newItem.ref = 3
                 newItem.first_name = item?.first_name?.toString()
                 newItem.last_name = item?.last_name?.toString()
@@ -100,12 +100,12 @@ const Index: FC<any> = () => {
       <div className='d-flex align-items-center gap-8px fs-16px fw-500 my-10px'>
         <div className='fs-12px'>Total</div>
         <div className='fs-12px'>:</div>
-        <div className='fw-700 text-primary'>{dataUserRegularTotal}</div>
+        <div className='fw-700 text-primary'>{dataTrainerTotal}</div>
         {isDev && (
           <div
             className='btn btn-sm btn-dark m-0 py-1 px-3 ms-auto'
             onClick={() => {
-              queryClient.resetQueries({ queryKey: ['getUserRegular'] })
+              queryClient.resetQueries({ queryKey: ['getTrainer'] })
             }}>
             Clear Cache
           </div>
@@ -115,9 +115,9 @@ const Index: FC<any> = () => {
         <Table
           loading={pageIsLoading}
           stickyHeader
-          data={dataUserRegular}
+          data={dataTrainer}
           pagination
-          total={dataUserRegularTotal}
+          total={dataTrainerTotal}
           columnClasses={{ image: 'text-center' }}
           headers={[
             { value: 'image', label: '#', className: 'text-center', width: 0, sort: false },
@@ -208,21 +208,21 @@ const Index: FC<any> = () => {
         show={showModalAdd}
         setShow={setShowModalAdd}
         detail={tmpDetail}
-        queryKey={['getUserRegular', dataUserRegularQueryParams]}
+        queryKey={['getTrainer', dataTrainerQueryParams]}
       />
       {/* Modal Delete Item */}
       <ModalDelete
         show={showModalDelete}
         setShow={setShowModalDelete}
         detail={tmpDetail}
-        queryKey={['getUserRegular', dataUserRegularQueryParams]}
+        queryKey={['getTrainer', dataTrainerQueryParams]}
       />
       {/* Modal Delete Item */}
       <ModalImport
         show={showModalImport}
         setShow={setShowModalImport}
         data={dataImport}
-        queryKey={['getUserRegular', dataUserRegularQueryParams]}
+        queryKey={['getTrainer', dataTrainerQueryParams]}
       />
     </div>
   )
