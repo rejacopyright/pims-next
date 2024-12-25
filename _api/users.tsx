@@ -61,3 +61,10 @@ export const changeUserToRegular = (id: string) => {
     url: `users/${id}/move/regular`,
   })
 }
+
+export const changeUserToTrainer = (id: string) => {
+  return axios({
+    method: 'post',
+    url: `users/${id}/move/trainer`,
+  })
+}

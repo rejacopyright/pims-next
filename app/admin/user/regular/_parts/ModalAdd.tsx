@@ -1,4 +1,4 @@
-import { addUser, updateUser } from '@api/users'
+import { addUser, changeUserToTrainer, updateUser } from '@api/users'
 import { ToastMessage } from '@components/toast'
 import { configClass } from '@helpers'
 import { useQueryClient } from '@tanstack/react-query'
@@ -92,6 +92,7 @@ const Index: FC<{
   // const [status, setStatus] = useState<any>(null)
   const [detail, setDetail] = useState<any>()
   const [submitBtnIsLoading, setSubmitBtnIsLoading] = useState<boolean>(false)
+  const [switchBtnIsLoading, setSwitchBtnIsLoading] = useState<boolean>(false)
   const [passwordShown, setPasswordShown] = useState<boolean>(false)
   const [showValidation, setShowValidation] = useState(false)
   const [passwordValidation, setPasswordValidation] = useState<any[]>([])
@@ -160,6 +161,26 @@ const Index: FC<{
       return item
     })
     setPasswordValidation(pass)
+  }
+
+  const handleSwitch = () => {
+    setSwitchBtnIsLoading(true)
+    changeUserToTrainer(detail?.id)
+      .then(({ data }: any) => {
+        if (data?.status === 'success') {
+          setShow(false)
+          queryClient.resetQueries({ queryKey })
+          ToastMessage({ type: 'success', message: data?.message })
+        }
+      })
+      .catch((err: any) => {
+        let message = err?.response?.data?.message || err?.message
+        if (typeof message === 'object') {
+          message = Object.values(message)?.[0]
+        }
+        ToastMessage({ type: 'error', message })
+      })
+      .finally(() => setSwitchBtnIsLoading(false))
   }
 
   return (
@@ -325,19 +346,38 @@ const Index: FC<{
             <div onClick={() => setShow(false)} className='btn btn-sm btn-light px-15px'>
               <div className='fs-14px'>Tutup</div>
             </div>
+            {detail?.id && (
+              <button
+                type='button'
+                disabled={switchBtnIsLoading}
+                className='btn btn-sm btn-warning btn-flex flex-center px-15px gap-10px'
+                onClick={handleSwitch}>
+                {switchBtnIsLoading ? (
+                  <span className='indicator-progress d-block fs-14px'>
+                    Waiting...
+                    <span className='spinner-border spinner-border-sm align-middle ms-2'></span>
+                  </span>
+                ) : (
+                  <>
+                    <i className='fas fa-exchange p-0 text-white fs-13px mb-1px' />
+                    <div className='fs-13px me-5px'>Jadikan sebagai trainer</div>
+                  </>
+                )}
+              </button>
+            )}
             <button
               type='submit'
               disabled={submitBtnIsLoading}
               className='btn btn-sm btn-primary btn-flex flex-center px-15px gap-10px'>
               {submitBtnIsLoading ? (
-                <span className='indicator-progress d-block fs-14px'>
+                <span className='indicator-progress d-block fs-13px'>
                   Waiting...
                   <span className='spinner-border spinner-border-sm align-middle ms-2'></span>
                 </span>
               ) : (
                 <>
-                  <i className='fas fa-plus p-0 text-white fs-14px mb-1px' />
-                  <div className='fs-14px me-5px'>{detail?.id ? 'Ubah' : 'Tambahkan'}</div>
+                  <i className='fas fa-plus p-0 text-white fs-13px mb-1px' />
+                  <div className='fs-13px me-5px'>{detail?.id ? 'Ubah' : 'Tambahkan'}</div>
                 </>
               )}
             </button>
