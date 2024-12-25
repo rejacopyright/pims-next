@@ -54,3 +54,10 @@ export const importUser = (data) => {
     data,
   })
 }
+
+export const changeUserToRegular = (id: string) => {
+  return axios({
+    method: 'post',
+    url: `users/${id}/move/regular`,
+  })
+}

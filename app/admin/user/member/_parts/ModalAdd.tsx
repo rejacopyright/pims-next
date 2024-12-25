@@ -1,14 +1,14 @@
+import { getMemberPackage } from '@api/member'
 import { addUser, updateUser } from '@api/users'
+import { Select as SelectAjax } from '@components/select/ajax'
+import { SingleValue } from '@components/select/config'
 import { ToastMessage } from '@components/toast'
 import { configClass } from '@helpers'
 import { useQueryClient } from '@tanstack/react-query'
 import { useFormik } from 'formik'
 import { FC, useEffect, useState } from 'react'
-import { Select as SelectAjax } from '@components/select/ajax'
 import { Modal } from 'react-bootstrap'
 import * as Yup from 'yup'
-import { SingleValue } from '@components/select/config'
-import { getMemberPackage } from '@api/member'
 
 interface FormValues {
   role_id: number

@@ -4,6 +4,7 @@ import Table from '@components/table'
 import Tooltip from '@components/tooltip'
 import { isDev } from '@helpers'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
+import moment from 'moment'
 import { useSearchParams } from 'next/navigation'
 import { parse } from 'qs'
 import { FC, useRef, useState } from 'react'
@@ -13,8 +14,8 @@ import { Filter } from './_parts/Filter'
 import ModalAddItem from './_parts/ModalAdd'
 import ModalDelete from './_parts/ModalDelete'
 import ModalImport from './_parts/ModalImport'
+import ModalSwitchToRegular from './_parts/ModalSwitchToRegular'
 import ModalView from './_parts/ModalView'
-import moment from 'moment'
 
 const Index: FC<any> = () => {
   const fileImportRef = useRef<HTMLInputElement>(null)
@@ -30,6 +31,7 @@ const Index: FC<any> = () => {
   const [dataImport, setDataImport] = useState<any[]>([])
   const [showModalImport, setShowModalImport] = useState<boolean>(false)
   const [showModalDelete, setShowModalDelete] = useState<boolean>(false)
+  const [showModalSwitchToRegular, setShowModalSwitchToRegular] = useState<boolean>(false)
 
   const dataUserMemberQueryParams: any = {
     q: queryParams?.q || '',
@@ -139,6 +141,7 @@ const Index: FC<any> = () => {
                 </div>
               ),
               member: () => {
+                const isMember = Boolean(_original?.member)
                 const durationInMonths = Math.round((e?.duration || 0) / 30)
                 const expired = moment(_original?.membership?.end_date).format(
                   'dddd, D MMMM yyyy (HH:mm [WIB])'
@@ -152,19 +155,38 @@ const Index: FC<any> = () => {
                       }}
                     />
                     <div>
-                      <div className='text-wrap'>{e?.name}</div>
-                      <div className='fs-11px text-gray-600'>
-                        <span>Level : </span>
-                        <span className='text-dark'> {e?.level}</span>
-                      </div>
-                      <div className='fs-11px text-gray-600'>
-                        <span>Durasi : </span>
-                        <span className='text-dark'> {durationInMonths} bulan</span>
-                      </div>
-                      <div className='fs-11px text-gray-600'>
-                        <span>Expired : </span>
-                        <span className='text-dark'> {expired}</span>
-                      </div>
+                      {isMember ? (
+                        <div className='text-wrap'>{e?.name}</div>
+                      ) : (
+                        <>
+                          <i className='d-block text-wrap text-danger ms-5px mt-5px'>Expired</i>
+                          <div
+                            className='btn btn-sm btn-warning py-2px px-5px mt-5px'
+                            onClick={() => {
+                              new Promise((resolve) => resolve(setTmpDetail(_original))).then(() =>
+                                setShowModalSwitchToRegular(true)
+                              )
+                            }}>
+                            Pindahkan ke Reguler
+                          </div>
+                        </>
+                      )}
+                      {isMember && (
+                        <>
+                          <div className='fs-11px text-gray-600'>
+                            <span>Level : </span>
+                            <span className='text-dark'> {e?.level}</span>
+                          </div>
+                          <div className='fs-11px text-gray-600'>
+                            <span>Durasi : </span>
+                            <span className='text-dark'> {durationInMonths} bulan</span>
+                          </div>
+                          <div className='fs-11px text-gray-600'>
+                            <span>Expired : </span>
+                            <span className='text-dark'> {expired}</span>
+                          </div>
+                        </>
+                      )}
                     </div>
                   </div>
                 )
@@ -221,9 +243,10 @@ const Index: FC<any> = () => {
                     <Tooltip placement='auto' title='Hapus paket'>
                       <div
                         className='btn btn-light-danger btn-flex flex-center p-0 w-30px h-30px radius-50'
-                        onClick={() => {
-                          setTmpDetail(_original)
-                          setShowModalDelete(true)
+                        onClick={async () => {
+                          new Promise((resolve) => resolve(setTmpDetail(_original))).then(() => {
+                            setShowModalDelete(true)
+                          })
                         }}>
                         <div className='fas fa-trash-alt' />
                       </div>
@@ -248,6 +271,13 @@ const Index: FC<any> = () => {
       <ModalDelete
         show={showModalDelete}
         setShow={setShowModalDelete}
+        detail={tmpDetail}
+        queryKey={['getUserMember', dataUserMemberQueryParams]}
+      />
+      {/* Modal Switch to Regular */}
+      <ModalSwitchToRegular
+        show={showModalSwitchToRegular}
+        setShow={setShowModalSwitchToRegular}
         detail={tmpDetail}
         queryKey={['getUserMember', dataUserMemberQueryParams]}
       />
