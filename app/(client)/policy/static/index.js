@@ -1,226 +1,483 @@
 module.exports = `
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-  </head>
-  <body>
-    <div class="div-contents">
-      <div class="div-requirements">
-        <div class="div-copy">
-          <p class="element-pims">
-            <span class="text-wrapper">시행일자: 2024년 08월 25일<br />PIMS Club</span>
-            <a href="https://www.pimsclub.id/" target="_blank" rel="noopener noreferrer"
-              ><span class="span">(saforus.com</span></a
-            >
-            <span class="text-wrapper"
-              >)를 운영하는 주식회사 마크애니(이하 “회사”)는 정보주체(이하 “사용자”라 함)의 개인정보보호를 중요시하며,
-              개인정보를 보호하기 위해서 “정보통신망 이용촉진 및 정보보호 등에 관한 법률”, “개인정보 보호법” 등
-              정보통신서비스제공자가 준수하여야 할 관련 법령상의 개인정보보호 규정을 준수하며 관련 법령에 의거한
-              개인정보 처리방침을 정하여 사용자의 권익 보호에 최선을 다하고 있습니다.<br />이후 개인정보처리방침을
-              개정하는 경우 웹사이트 공지사항(또는 개별공지)을 통하여 공지할 것입니다.</span
-            >
-          </p>
-        </div>
-        <div class="div-copy">
-          <div class="div-title"><div class="div">1. 개인정보의 수집 항목</div></div>
-          <p class="element">
-            회사는 최초 회원가입시 서비스의 본질적 기능을 수행하기 위해 반드시 필요한 최소한의 정보만을 수집하고 있으며
-            회사가 제공하는 서비스 이용에 따라 필요한 정보를 추가로 수집할 수 있습니다.<br />회사는 개인정보를 수집함에
-            있어, 서비스 제공에 필요한 최소한의 개인정보를 ‘필수동의 항목’으로, 그 외 개인정보는 ‘선택동의 항목’으로
-            구분하여 이에 대해 개별적으로 동의할 수 있는 절차를 마련합니다. 회사는 사용자가 필요한 최소한의 개인정보
-            이외의 개인정보를 제공하지 아니한다는 이유로 그 서비스의 제공을 거부하지 않습니다.<br />회사는 다음과 같은
-            목적으로 개인정보를 수집하여 이용할 수 있습니다. 회사는 개인정보를 수집·이용목적 이외에 다른 용도로 이를
-            이용하거나 사용자의 동의 없이 제3자에게 이를 제공하지 않습니다.
-          </p>
-          <div class="div-title"><div class="text-wrapper-2">1) 수집 항목</div></div>
-          <p class="p">
-            회사는 회원 가입, 서비스 신청 및 이용, 고객 상담 등을 위해 아래와 같은 개인정보를 수집하고 있습니다.
-          </p>
-          <p class="there-are-no-docs-to">There are no docs to display at the moment.<br />Please try again later.</p>
-          <p class="p">
-            서비스 이용과정이나 사업 처리 과정에서 아래와 같은 정보들이 자동으로 생성되어 수집·저장·조합·분석될 수
-            있습니다.<br />서비스 이용 기록, 쿠키, 접속 IP정보, 제재 및 이용정지기록, 장애관련 정보, 단말기정보,
-            OS정보<br />신용카드 결제 시 : 신용카드 번호, 카드 유효 기간
-          </p>
-          <div class="div-title"><div class="text-wrapper-2">2) 수집 방법</div></div>
-          <p class="p">
-            회사는 다음과 같은 방법으로 개인정보를 수집할 수 있습니다.<br />홈페이지(회원가입, 고객문의, 도입문의,
-            기타문의 등), 이메일, 전화, 서면, 팩스<br />이용사업자로부터의 제공<br />협력회사로부터의 제공<br />생성정보
-            수집 툴을 통한 자동수집
-          </p>
-          <div class="div-title"><p class="div">2. 수집하는 개인정보의 이용 목적</p></div>
-          <p class="p">
-            회사는 수집한 개인정보를 다음의 목적을 위해 활용합니다.<br />
-            ① 서비스 제공에 관한 계약 이행 및 서비스 제공에 따른 요금 정산<br />
-            ② 회원 관리<br />
-            ③ 다양한 서비스 제공 및 공지사항 전달<br />
-            ④ 신규 서비스 개발 및 이벤트 행사 시 정보 전달, 마케팅·광고 등에 활용
-          </p>
-          <div class="div-title"><p class="div">3. 개인정보의 보유 및 이용 기간</p></div>
-          <p class="p">
-            회사는 회원 가입, 상담, 서비스 신청 등을 위해 아래와 같은 개인정보를 수집하고 있습니다.<br /><br />1) 회사는
-            고객의 개인정보를 서비스 가입 일부터 가입 해지일 까지 이용하고 요금 정산 분쟁 대비를 위해 해지 후 6개월까지
-            보유합니다. 단, 요금의 과납 또는 미납이 있을 경우와 분쟁이 있을 경우 해결 시까지 보유합니다.<br />보존
-            항목(개인) : 성명, 청구지 주소, 유무선 전화번호, 이메일, 요금 납부 내역(청구 금액, 수납 금액, 수납 일시,
-            요금 납부 방법)<br />보존 항목(사업자) : 회사명, 사업자명, 대표자명, 사업자 등록번호, 법인등록번호, 요금
-            납부 내역(청구 금액, 수납 금액, 수납 일시, 요금 납부 방법)<br />보존 근거 : 국세기본법 제85조의3<br />보존
-            기간 : 5년<br />2) 관계 법령의 규정에 의하여 보존할 필요가 있는 경우 회사는 아래와 같이 일정 기간
-            보유합니다<br />계약 또는 청약 철회 등에 관한 기록: 5년 (전자상거래 등에서의 소비자보호에 관한 법률)<br />대금결제
-            및 재화 등의 공급에 관한 기록: 5년 (전자상거래 등에서의 소비자보호에 관한 법률)<br />소비자의 불만 또는
-            분쟁처리에 관한 기록: 3년(전자상거래 등에서의 소비자보호에 관한 법률)<br />신용정보의 수집/처리 및 이용 등에
-            관한 기록: 3년 (신용정보의 이용 및 보호에 관한 법률)
-          </p>
-          <div class="div-title"><p class="div">4. 개인정보의 파기 절차 및 방법</p></div>
-          <div class="div-title"><div class="text-wrapper-2">1) 파기 절차</div></div>
-          <p class="p">
-            고객의 개인정보는 수집, 이용 목적이 달성 된 후 내부 방침 및 기타 관련 법령에 의한 정보 보호 사유에 따라(보유
-            및 이용 기간 참조) 일정 기간 저장된 후 파기 되어집니다.<br />파기 대상 : 보유 및 이용 기간, 관련 법령에 따른
-            보존 기간이 종료된 고객 정보
-          </p>
-          <div class="div-title"><div class="text-wrapper-2">2) 파기 방법</div></div>
-          <p class="p">
-            전자적 파일 형태로 저장된 개인정보는 기록을 재생할 수 없는 기술적 방법을 사용하여 삭제합니다.<br />종이에
-            출력 된 개인정보는 분쇄기로 분쇄하거나 소각을 통하여 파기합니다.
-          </p>
-          <div class="div-title"><p class="div">5. 개인정보의 제공 및 위탁</p></div>
-          <p class="p">
-            회사는 고객의 개인정보를 개인정보처리방침의 「2. 수집하는 개인정보의 이용 목적」에서 고지한 범위 또는 서비스
-            이용 약관에 명시한 범위 내에서 사용하며, 동 범위를 넘어 이용하거나 제3자에게 제공하지 않습니다. 다만, 고객의
-            동의가 있거나 다음 사항의 경우 예외로 합니다.<br />① 서비스 제공에 따른 요금 정산을 위해 필요한 경우<br />②
-            서비스의 제공에 관한 계약의 이행을 위해 필요한 개인정보로서 경제적·기술적 사유로 통상의 동의를 받는 것이
-            현저히 곤란한 경우<br />③ 관계 법령에 특별한 규정이 있는 경우 법률에 규정된 바에 따라 적법한 절차에 따라
-            제공<br />회사는 서비스 향상을 위해서 아래와 같이 개인정보를 위탁하고 있으며, 관계 법령에 따라 위탁 계약 시
-            개인정보가 안전하게 관리될 수 있도록 필요한 사항을 규정하고 있습니다. 회사의 개인정보 위탁 처리 기관 및 위탁
-            업무 내용은 아래와 같습니다.
-          </p>
-          <div class="table-responsive w-100">
-            <table class="table table-policy w-100 gy-3 gx-5 mb-0">
-              <thead>
-                <tr>
-                  <th class="title-name">수탁 업체</th>
-                  <th class="title-name">위탁 업무 내용</th>
-                  <th class="title-name">개인정보의 보유 및 이용 기간</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="">
-                  <td class="">Amazon Web Service</td>
-                  <td class="">고객 데이터 보관 및 운영</td>
-                  <td class="">회원 탈퇴 시 혹은 위탁 계약 종료 시까지</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="div-title"><p class="div">6. 이용자의 권리와 행사 방법</p></div>
-          <p class="p">
-            1) 회원은 언제든지 등록되어 있는 자신의 개인정보를 조회하거나 수정할 수 있으며 가입 해지를 요청할 수도
-            있습니다. 귀하가 개인정보의 오류에 대한 정정을 요청하신 경우에는 정정을 완료하기 전까지 당해 개인정보를 이용
-            또는 제공하지 않습니다.<br />2) 개인정보 조회 및 수정을 위해서는 아이디와 비밀번호를 사용하여 로그인(Log In)
-            한 후, 내 계정에서 수정할 수 있습니다.<br />3) 가입해지는 별도로 문의 바랍니다. 단, 미납 요금 등 회원이
-            회사에 변제 할 채무가 남아 있는 경우 유보 될 수 있습니다.<br />4) 포텐톡은 법정대리인의 동의가 필요한 만
-            14세 미만 아동의 개인정보는 원칙적으로 수집하지 않으며, 만 14세 미만 아동의 서비스 가입을 받지 않습니다.
-          </p>
-          <div class="div-title">
-            <p class="text-wrapper-2">개인정보 자동수집 장치의 설치, 운영 및 그 거부에 관한 사항</p>
-          </div>
-          <p class="p">
-            회사는 개인화되고 맞춤화된 서비스를 제공하기 위해서 고객의 정보를 저장하고 수시로 불러오는 ‘쿠키(cookie)’를
-            사용합니다.<br />쿠키는 웹사이트를 운영하는데 이용되는 서버가 고객의 브라우저에게 보내는 아주 작은 텍스트
-            파일로 고객 컴퓨터의 하드디스크에 저장됩니다. 이후 고객이 웹 사이트에 방문할 경우 웹 사이트 서버는 고객의
-            하드 디스크에 저장되어 있는 쿠키의 내용을 읽어 고객의 환경 설정을 유지하고 맞춤화 된 서비스를 제공하기 위해
-            이용됩니다.<br />당사는 아래에 Saforus.com 사이트에서 사용할 수 있는 쿠키의 목록을 기재하였습니다. 쿠키를
-            통하여 수집하는 정보가 개인정보에 해당하는 한, 개인정보 처리 방침이 적용되고 이 쿠키 처리 방침을 보완한다는
-            점을 유의하시기 바랍니다.<br />아래의 쿠키는 사이트가 작동하고 고객이 사이트를 둘러보고 그 서비스와 기능들을
-            이용할 수 있도록 하는데 필요합니다. 이러한 절대적으로 필요한 쿠키가 없다면, 사이트는 당사가 원하는 것처럼
-            고객을 위하여 원활하게 작동할 수 없고 당사는 사이트 또는 귀하가 요청하는 어떠한 서비스를 제공할 수 없을
-            것입니다.<br />쿠키는 개인을 식별하는 정보를 자동적/능동적으로 수집하지 않으며, 고객은 언제든지 이러한
-            쿠키의 저장을 거부하거나 삭제할 수 있습니다.
-          </p>
-          <div class="div-title"><div class="div">개인정보의 기술적/관리적 보호 대책</div></div>
-          <p class="p">
-            회사는 수집 된 개인정보의 안정성 확보를 위하여 아래와 같은 기술적/관리적 대책을 강구하고 있습니다.
-          </p>
-          <div class="div-title"><div class="text-wrapper-2">1) 기술적 대책</div></div>
-          <p class="p">
-            해킹 등에 의한 고객의 개인정보가 유출되는 것을 방지하기 위해 외부로부터의 침입을 차단하는 네트워크 및 시스템
-            측면의 별도의 보안 장치(방화벽, IPS 및 서버 보안 등)를 사용하여 침입의 차단 및 모니터링을 수행하고
-            있습니다.<br />회사는 백신 및 패치 자동 설치 프로그램을 이용하여, 컴퓨터 바이러스에 의 한 피해를 방지하기
-            위한 조치를 취하고 있습니다. 해당 프로그램은 주기적으로 업데이트하며 갑작스러운 바이러스 가 출현할 경우,
-            즉시 패치를 적용함으로써 개인정보가 침해되는 것을 방지하고 있습니다.<br />회사는 암호 알고리즘을 이용하여
-            네트워크상의 개인정보를 안전하게 전송할 수 있는 보안 장치(SSL등 암호화 프로토콜)를 채택하고 있습니다.
-          </p>
-          <div class="div-title"><div class="text-wrapper-2">2) 관리적 대책</div></div>
-          <p class="p">
-            회사는 고객의 개인정보에 대한 접근 권한을 최소한의 인원으로 제한하고 있으며 그에 해당하는 자는 다음과
-            같습니다.<br />① 이용자를 직접 상대로 마케팅 업무를 수행하는 자<br />② 개인정보관리책임자 및 담당자 등
-            개인정보관리업무를 수행하는 자<br />③ 기타 업무상 개인정보의 취급이 불가피한 자<br />취급자에 의하여
-            개인정보가 분실, 도난, 유출 등이 되지 아니하도록 의식 함양 및 지속적인 교육을 실시합니다.<br />개인정보 관련
-            취급자의 업무 인수인계는 보안이 유지된 상태에서 철저하게 이뤄지고 있으며 입사 및 퇴사 이후 개인정보 사고에
-            대한 책임을 명확히 하고 있습니다.<br />전산실 및 자료 보관실 등을 특별 보호 구역으로 설정하여 출입을
-            통제하고 있습니다.<br />회사는 이용자 개인의 실수나 기본적인 인터넷의 위험성 때문에 일어나는 일들에 대해
-            책임을 지지 않습니다. 회원 개개인이 본인의 개인정보를 보호하기 위해서 자신의 ID 와 비밀번호를 적절하게
-            관리하고 여기에 대한 책임을 져야 합니다.<br />그 외 내부 관리자의 실수나 기술 관리 상의 사고로 인해
-            개인정보의 상실, 유출, 변조, 훼손이 유발될 경우 회사는 즉각 고객에게 사실을 알리고 적절한 대책과 보상을
-            강구할 것입니다.
-          </p>
-          <div class="div-title">
-            <div class="div-title"><div class="div">개인정보에 관한 민원 서비스</div></div>
-          </div>
-          <p class="p">
-            <span class="text-wrapper"
-              >회사는 고객의 개인정보를 보호하고 개인정보와 관련한 불만을 처리하기 위하여 아래와 같이
-              개인정보보호책임자를 지정하고 있습니다.<br />[개인정보보호책임자]<br />성명 : 최고<br />이메일 :
-            </span>
-            <a href="mailto:pallycon@inka.co.kr" target="_blank" rel="noopener noreferrer"
-              ><span class="span">support@pimsclub.id<br /></span
-            ></a>
-            <span class="text-wrapper">전화 : (+82) 02-2262-5222</span>
-          </p>
-          <div class="div-title">
-            <div class="div-title"><p class="div">10. 개인정보 관련 신고 및 분쟁 조정</p></div>
-          </div>
-          <p class="p">
-            <span class="text-wrapper"
-              >기타 개인정보 침해에 대한 신고나 상담이 필요하신 경우에는 아래 기관에 문의하시기 바랍니다.<br
-            /></span>
-            <a href="https://www.kopico.go.kr/main/main.do" target="_blank" rel="noopener noreferrer"
-              ><span class="span">개인정보분쟁조정위원회</span></a
-            >
-            <span class="text-wrapper"> (1833-6972)<br /></span>
-            <a href="https://privacy.kisa.or.kr/main.do" target="_blank" rel="noopener noreferrer"
-              ><span class="span">개인정보침해신고센터</span></a
-            >
-            <span class="text-wrapper"> (국번없이 118)<br /></span>
-            <a href="https://www.spo.go.kr/site/spo/main.do" target="_blank" rel="noopener noreferrer"
-              ><span class="span">대검찰청 첨단범죄수사센터</span></a
-            >
-            <span class="text-wrapper"> (국번없이 1301)<br /></span>
-            <a href="https://ecrm.police.go.kr/minwon/main" target="_blank" rel="noopener noreferrer"
-              ><span class="span">경찰청 사이버수사국-사이버범죄 신고시스템</span></a
-            >
-            <span class="text-wrapper"> (ECRM) (국번없이182)</span>
-          </p>
-          <div class="div-title">
-            <div class="div-title"><div class="div">11. 기타</div></div>
-          </div>
-          <p class="p">
-            회사에 링크되어 있는 타 웹사이트들이 개인정보를 수집하는 행위에 대해서는 본 회사 개인정보처리방침이 적용되지
-            않음을 알려 드립니다.
-          </p>
-          <div class="div-title">
-            <div class="div-title"><div class="div">12. 고지의 의무</div></div>
-          </div>
-          <p class="p">
-            현 개인정보처리방침 내용 추가, 삭제 및 수정이 있을 시에는 개정 최소 7일전부터 이메일을 통해 고지할 것입니다.
-          </p>
-          <div class="div-title">
-            <div class="div-title"><div class="div">부칙</div></div>
-          </div>
-          <p class="p">이 개인정보처리방침은 2024년 8월 26일 개정되어, 2024년 8월 26일부터 적용합니다.</p>
-        </div>
-      </div>
-    </div>
-  </body>
+ <head>
+  <meta charset="utf-8" />
+ </head>
+ <body>
+  <div class="content">
+   <h1>Privacy Policy</h1>
+   <p>Last updated: December 26, 2024</p>
+   <p>
+    This Privacy Policy describes Our policies and procedures on the collection,
+    use and disclosure of Your information when You use the Service and tells
+    You about Your privacy rights and how the law protects You.
+   </p>
+   <p>
+    We use Your Personal data to provide and improve the Service. By using the
+    Service, You agree to the collection and use of information in accordance
+    with this Privacy Policy. This Privacy Policy has been created with the help
+    of the
+    <a
+     href="https://pimsclub.id"
+     target="_blank"
+     >PIMS</a
+    >.
+   </p>
+   <h2>Interpretation and Definitions</h2>
+   <h3>Interpretation</h3>
+   <p>
+    The words of which the initial letter is capitalized have meanings defined
+    under the following conditions. The following definitions shall have the
+    same meaning regardless of whether they appear in singular or in plural.
+   </p>
+   <h3>Definitions</h3>
+   <p>For the purposes of this Privacy Policy:</p>
+   <ul>
+    <li>
+     <p>
+      <strong>Account</strong> means a unique account created for You to access
+      our Service or parts of our Service.
+     </p>
+    </li>
+    <li>
+     <p>
+      <strong>Affiliate</strong> means an entity that controls, is controlled by
+      or is under common control with a party, where &quot;control&quot; means
+      ownership of 50% or more of the shares, equity interest or other
+      securities entitled to vote for election of directors or other managing
+      authority.
+     </p>
+    </li>
+    <li>
+     <p>
+      <strong>Company</strong> (referred to as either &quot;the Company&quot;,
+      &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this Agreement)
+      refers to PIMS.
+     </p>
+    </li>
+    <li>
+     <p>
+      <strong>Cookies</strong> are small files that are placed on Your computer,
+      mobile device or any other device by a website, containing the details of
+      Your browsing history on that website among its many uses.
+     </p>
+    </li>
+    <li>
+     <p><strong>Country</strong> refers to: Indonesia</p>
+    </li>
+    <li>
+     <p>
+      <strong>Device</strong> means any device that can access the Service such
+      as a computer, a cellphone or a digital tablet.
+     </p>
+    </li>
+    <li>
+     <p>
+      <strong>Personal Data</strong> is any information that relates to an
+      identified or identifiable individual.
+     </p>
+    </li>
+    <li>
+     <p><strong>Service</strong> refers to the Website.</p>
+    </li>
+    <li>
+     <p>
+      <strong>Service Provider</strong> means any natural or legal person who
+      processes the data on behalf of the Company. It refers to third-party
+      companies or individuals employed by the Company to facilitate the
+      Service, to provide the Service on behalf of the Company, to perform
+      services related to the Service or to assist the Company in analyzing how
+      the Service is used.
+     </p>
+    </li>
+    <li>
+     <p>
+      <strong>Usage Data</strong> refers to data collected automatically, either
+      generated by the use of the Service or from the Service infrastructure
+      itself (for example, the duration of a page visit).
+     </p>
+    </li>
+    <li>
+     <p>
+      <strong>Website</strong> refers to PIMS, accessible from
+      <a
+       href="https://pimsclub.id"
+       rel="external nofollow noopener"
+       target="_blank"
+       >https://pimsclub.id</a
+      >
+     </p>
+    </li>
+    <li>
+     <p>
+      <strong>You</strong> means the individual accessing or using the Service,
+      or the company, or other legal entity on behalf of which such individual
+      is accessing or using the Service, as applicable.
+     </p>
+    </li>
+   </ul>
+   <h2>Collecting and Using Your Personal Data</h2>
+   <h3>Types of Data Collected</h3>
+   <h4>Personal Data</h4>
+   <p>
+    While using Our Service, We may ask You to provide Us with certain
+    personally identifiable information that can be used to contact or identify
+    You. Personally identifiable information may include, but is not limited to:
+   </p>
+   <ul>
+    <li>
+     <p>Email address</p>
+    </li>
+    <li>
+     <p>Usage Data</p>
+    </li>
+   </ul>
+   <h4>Usage Data</h4>
+   <p>Usage Data is collected automatically when using the Service.</p>
+   <p>
+    Usage Data may include information such as Your Device's Internet Protocol
+    address (e.g. IP address), browser type, browser version, the pages of our
+    Service that You visit, the time and date of Your visit, the time spent on
+    those pages, unique device identifiers and other diagnostic data.
+   </p>
+   <p>
+    When You access the Service by or through a mobile device, We may collect
+    certain information automatically, including, but not limited to, the type
+    of mobile device You use, Your mobile device unique ID, the IP address of
+    Your mobile device, Your mobile operating system, the type of mobile
+    Internet browser You use, unique device identifiers and other diagnostic
+    data.
+   </p>
+   <p>
+    We may also collect information that Your browser sends whenever You visit
+    our Service or when You access the Service by or through a mobile device.
+   </p>
+   <h4>Tracking Technologies and Cookies</h4>
+   <p>
+    We use Cookies and similar tracking technologies to track the activity on
+    Our Service and store certain information. Tracking technologies used are
+    beacons, tags, and scripts to collect and track information and to improve
+    and analyze Our Service. The technologies We use may include:
+   </p>
+   <ul>
+    <li>
+     <strong>Cookies or Browser Cookies.</strong> A cookie is a small file
+     placed on Your Device. You can instruct Your browser to refuse all Cookies
+     or to indicate when a Cookie is being sent. However, if You do not accept
+     Cookies, You may not be able to use some parts of our Service. Unless you
+     have adjusted Your browser setting so that it will refuse Cookies, our
+     Service may use Cookies.
+    </li>
+    <li>
+     <strong>Web Beacons.</strong> Certain sections of our Service and our
+     emails may contain small electronic files known as web beacons (also
+     referred to as clear gifs, pixel tags, and single-pixel gifs) that permit
+     the Company, for example, to count users who have visited those pages or
+     opened an email and for other related website statistics (for example,
+     recording the popularity of a certain section and verifying system and
+     server integrity).
+    </li>
+   </ul>
+   <p>
+    Cookies can be &quot;Persistent&quot; or &quot;Session&quot; Cookies.
+    Persistent Cookies remain on Your personal computer or mobile device when
+    You go offline, while Session Cookies are deleted as soon as You close Your
+    web browser. You can learn more about cookies on
+    <a
+     href="https://www.termsfeed.com/blog/cookies/#What_Are_Cookies"
+     target="_blank"
+     >TermsFeed website</a
+    >
+    article.
+   </p>
+   <p>
+    We use both Session and Persistent Cookies for the purposes set out below:
+   </p>
+   <ul>
+    <li>
+     <p><strong>Necessary / Essential Cookies</strong></p>
+     <p>Type: Session Cookies</p>
+     <p>Administered by: Us</p>
+     <p>
+      Purpose: These Cookies are essential to provide You with services
+      available through the Website and to enable You to use some of its
+      features. They help to authenticate users and prevent fraudulent use of
+      user accounts. Without these Cookies, the services that You have asked for
+      cannot be provided, and We only use these Cookies to provide You with
+      those services.
+     </p>
+    </li>
+    <li>
+     <p><strong>Cookies Policy / Notice Acceptance Cookies</strong></p>
+     <p>Type: Persistent Cookies</p>
+     <p>Administered by: Us</p>
+     <p>
+      Purpose: These Cookies identify if users have accepted the use of cookies
+      on the Website.
+     </p>
+    </li>
+    <li>
+     <p><strong>Functionality Cookies</strong></p>
+     <p>Type: Persistent Cookies</p>
+     <p>Administered by: Us</p>
+     <p>
+      Purpose: These Cookies allow us to remember choices You make when You use
+      the Website, such as remembering your login details or language
+      preference. The purpose of these Cookies is to provide You with a more
+      personal experience and to avoid You having to re-enter your preferences
+      every time You use the Website.
+     </p>
+    </li>
+   </ul>
+   <p>
+    For more information about the cookies we use and your choices regarding
+    cookies, please visit our Cookies Policy or the Cookies section of our
+    Privacy Policy.
+   </p>
+   <h3>Use of Your Personal Data</h3>
+   <p>The Company may use Personal Data for the following purposes:</p>
+   <ul>
+    <li>
+     <p>
+      <strong>To provide and maintain our Service</strong>, including to monitor
+      the usage of our Service.
+     </p>
+    </li>
+    <li>
+     <p>
+      <strong>To manage Your Account:</strong> to manage Your registration as a
+      user of the Service. The Personal Data You provide can give You access to
+      different functionalities of the Service that are available to You as a
+      registered user.
+     </p>
+    </li>
+    <li>
+     <p>
+      <strong>For the performance of a contract:</strong> the development,
+      compliance and undertaking of the purchase contract for the products,
+      items or services You have purchased or of any other contract with Us
+      through the Service.
+     </p>
+    </li>
+    <li>
+     <p>
+      <strong>To contact You:</strong> To contact You by email, telephone calls,
+      SMS, or other equivalent forms of electronic communication, such as a
+      mobile application's push notifications regarding updates or informative
+      communications related to the functionalities, products or contracted
+      services, including the security updates, when necessary or reasonable for
+      their implementation.
+     </p>
+    </li>
+    <li>
+     <p>
+      <strong>To provide You</strong> with news, special offers and general
+      information about other goods, services and events which we offer that are
+      similar to those that you have already purchased or enquired about unless
+      You have opted not to receive such information.
+     </p>
+    </li>
+    <li>
+     <p>
+      <strong>To manage Your requests:</strong> To attend and manage Your
+      requests to Us.
+     </p>
+    </li>
+    <li>
+     <p>
+      <strong>For business transfers:</strong> We may use Your information to
+      evaluate or conduct a merger, divestiture, restructuring, reorganization,
+      dissolution, or other sale or transfer of some or all of Our assets,
+      whether as a going concern or as part of bankruptcy, liquidation, or
+      similar proceeding, in which Personal Data held by Us about our Service
+      users is among the assets transferred.
+     </p>
+    </li>
+    <li>
+     <p>
+      <strong>For other purposes</strong>: We may use Your information for other
+      purposes, such as data analysis, identifying usage trends, determining the
+      effectiveness of our promotional campaigns and to evaluate and improve our
+      Service, products, services, marketing and your experience.
+     </p>
+    </li>
+   </ul>
+   <p>We may share Your personal information in the following situations:</p>
+   <ul>
+    <li>
+     <strong>With Service Providers:</strong> We may share Your personal
+     information with Service Providers to monitor and analyze the use of our
+     Service, to contact You.
+    </li>
+    <li>
+     <strong>For business transfers:</strong> We may share or transfer Your
+     personal information in connection with, or during negotiations of, any
+     merger, sale of Company assets, financing, or acquisition of all or a
+     portion of Our business to another company.
+    </li>
+    <li>
+     <strong>With Affiliates:</strong> We may share Your information with Our
+     affiliates, in which case we will require those affiliates to honor this
+     Privacy Policy. Affiliates include Our parent company and any other
+     subsidiaries, joint venture partners or other companies that We control or
+     that are under common control with Us.
+    </li>
+    <li>
+     <strong>With business partners:</strong> We may share Your information with
+     Our business partners to offer You certain products, services or
+     promotions.
+    </li>
+    <li>
+     <strong>With other users:</strong> when You share personal information or
+     otherwise interact in the public areas with other users, such information
+     may be viewed by all users and may be publicly distributed outside.
+    </li>
+    <li>
+     <strong>With Your consent</strong>: We may disclose Your personal
+     information for any other purpose with Your consent.
+    </li>
+   </ul>
+   <h3>Retention of Your Personal Data</h3>
+   <p>
+    The Company will retain Your Personal Data only for as long as is necessary
+    for the purposes set out in this Privacy Policy. We will retain and use Your
+    Personal Data to the extent necessary to comply with our legal obligations
+    (for example, if we are required to retain your data to comply with
+    applicable laws), resolve disputes, and enforce our legal agreements and
+    policies.
+   </p>
+   <p>
+    The Company will also retain Usage Data for internal analysis purposes.
+    Usage Data is generally retained for a shorter period of time, except when
+    this data is used to strengthen the security or to improve the functionality
+    of Our Service, or We are legally obligated to retain this data for longer
+    time periods.
+   </p>
+   <h3>Transfer of Your Personal Data</h3>
+   <p>
+    Your information, including Personal Data, is processed at the Company's
+    operating offices and in any other places where the parties involved in the
+    processing are located. It means that this information may be transferred to
+    — and maintained on — computers located outside of Your state, province,
+    country or other governmental jurisdiction where the data protection laws
+    may differ than those from Your jurisdiction.
+   </p>
+   <p>
+    Your consent to this Privacy Policy followed by Your submission of such
+    information represents Your agreement to that transfer.
+   </p>
+   <p>
+    The Company will take all steps reasonably necessary to ensure that Your
+    data is treated securely and in accordance with this Privacy Policy and no
+    transfer of Your Personal Data will take place to an organization or a
+    country unless there are adequate controls in place including the security
+    of Your data and other personal information.
+   </p>
+   <h3>Delete Your Personal Data</h3>
+   <p>
+    You have the right to delete or request that We assist in deleting the
+    Personal Data that We have collected about You.
+   </p>
+   <p>
+    Our Service may give You the ability to delete certain information about You
+    from within the Service.
+   </p>
+   <p>
+    You may update, amend, or delete Your information at any time by signing in
+    to Your Account, if you have one, and visiting the account settings section
+    that allows you to manage Your personal information. You may also contact Us
+    to request access to, correct, or delete any personal information that You
+    have provided to Us.
+   </p>
+   <p>
+    Please note, however, that We may need to retain certain information when we
+    have a legal obligation or lawful basis to do so.
+   </p>
+   <h3>Disclosure of Your Personal Data</h3>
+   <h4>Business Transactions</h4>
+   <p>
+    If the Company is involved in a merger, acquisition or asset sale, Your
+    Personal Data may be transferred. We will provide notice before Your
+    Personal Data is transferred and becomes subject to a different Privacy
+    Policy.
+   </p>
+   <h4>Law enforcement</h4>
+   <p>
+    Under certain circumstances, the Company may be required to disclose Your
+    Personal Data if required to do so by law or in response to valid requests
+    by public authorities (e.g. a court or a government agency).
+   </p>
+   <h4>Other legal requirements</h4>
+   <p>
+    The Company may disclose Your Personal Data in the good faith belief that
+    such action is necessary to:
+   </p>
+   <ul>
+    <li>Comply with a legal obligation</li>
+    <li>Protect and defend the rights or property of the Company</li>
+    <li>
+     Prevent or investigate possible wrongdoing in connection with the Service
+    </li>
+    <li>Protect the personal safety of Users of the Service or the public</li>
+    <li>Protect against legal liability</li>
+   </ul>
+   <h3>Security of Your Personal Data</h3>
+   <p>
+    The security of Your Personal Data is important to Us, but remember that no
+    method of transmission over the Internet, or method of electronic storage is
+    100% secure. While We strive to use commercially acceptable means to protect
+    Your Personal Data, We cannot guarantee its absolute security.
+   </p>
+   <h2>Children's Privacy</h2>
+   <p>
+    Our Service does not address anyone under the age of 13. We do not knowingly
+    collect personally identifiable information from anyone under the age of 13.
+    If You are a parent or guardian and You are aware that Your child has
+    provided Us with Personal Data, please contact Us. If We become aware that
+    We have collected Personal Data from anyone under the age of 13 without
+    verification of parental consent, We take steps to remove that information
+    from Our servers.
+   </p>
+   <p>
+    If We need to rely on consent as a legal basis for processing Your
+    information and Your country requires consent from a parent, We may require
+    Your parent's consent before We collect and use that information.
+   </p>
+   <h2>Links to Other Websites</h2>
+   <p>
+    Our Service may contain links to other websites that are not operated by Us.
+    If You click on a third party link, You will be directed to that third
+    party's site. We strongly advise You to review the Privacy Policy of every
+    site You visit.
+   </p>
+   <p>
+    We have no control over and assume no responsibility for the content,
+    privacy policies or practices of any third party sites or services.
+   </p>
+   <h2>Changes to this Privacy Policy</h2>
+   <p>
+    We may update Our Privacy Policy from time to time. We will notify You of
+    any changes by posting the new Privacy Policy on this page.
+   </p>
+   <p>
+    We will let You know via email and/or a prominent notice on Our Service,
+    prior to the change becoming effective and update the &quot;Last
+    updated&quot; date at the top of this Privacy Policy.
+   </p>
+   <p>
+    You are advised to review this Privacy Policy periodically for any changes.
+    Changes to this Privacy Policy are effective when they are posted on this
+    page.
+   </p>
+   <h2>Contact Us</h2>
+   <p>
+    If you have any questions about this Privacy Policy, You can contact us:
+   </p>
+   <ul>
+    <li>By email: info@pimsclub.id</li>
+   </ul>
+  </div>
+ </body>
 </html>
 `

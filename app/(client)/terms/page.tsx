@@ -1,7 +1,3 @@
-import './static/styleguide.css'
-import './static/style.css'
-import './static/globals.scss'
-
 import BreadCumb from '@client/Components/Common/BreadCumb'
 import { PageTitle } from '@metronic/layout/core'
 import { FC } from 'react'
