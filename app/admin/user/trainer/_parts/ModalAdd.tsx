@@ -37,11 +37,17 @@ const addSchema: any = Yup.object().shape({
     .matches(minCharRegex, 'Minimal 8 angka')
     .required('Nomor Handphone wajib di isi'),
   password: Yup.string()
-    .matches(lowerCaseRegex, 'Minimal 1 huruf kecil')
-    .matches(upperCaseRegex, 'Minimal 1 huruf besar')
-    .matches(numberRegex, 'Minimal 1 angka')
-    .matches(specialCharRegex, 'Minimal 1 simbol')
-    .matches(minCharRegex, 'Minimal 8 karakter')
+    .when('secure_password', {
+      is: true,
+      then: () =>
+        Yup.string()
+          .matches(lowerCaseRegex, 'Minimal 1 huruf kecil')
+          .matches(upperCaseRegex, 'Minimal 1 huruf besar')
+          .matches(numberRegex, 'Minimal 1 angka')
+          .matches(specialCharRegex, 'Minimal 1 simbol')
+          .matches(minCharRegex, 'Minimal 8 karakter')
+          .required('Password is required'),
+    })
     .required('Password is required'),
   password_confirm: Yup.string()
     .oneOf([Yup.ref('password'), null as any], "Confirmation password doesn't match")
@@ -60,18 +66,26 @@ const editSchema: any = Yup.object().shape({
     .matches(minCharRegex, 'Minimal 8 angka')
     .required('Nomor Handphone wajib di isi'),
   password: Yup.string()
-    .matches(lowerCaseRegex, 'Minimal 1 huruf kecil')
-    .matches(upperCaseRegex, 'Minimal 1 huruf besar')
-    .matches(numberRegex, 'Minimal 1 angka')
-    .matches(specialCharRegex, 'Minimal 1 simbol')
-    .matches(minCharRegex, 'Minimal 8 karakter')
+    .when('secure_password', {
+      is: true,
+      then: () =>
+        Yup.string()
+          .matches(lowerCaseRegex, 'Minimal 1 huruf kecil')
+          .matches(upperCaseRegex, 'Minimal 1 huruf besar')
+          .matches(numberRegex, 'Minimal 1 angka')
+          .matches(specialCharRegex, 'Minimal 1 simbol')
+          .matches(minCharRegex, 'Minimal 8 karakter'),
+    })
     .nullable(),
   password_confirm: Yup.string()
     .when('password', {
       is: (val) => val,
-      then: () => Yup.string().required('Confirmation password is required'),
+      then: () =>
+        Yup.string()
+          .required('Confirmation password is required')
+          .oneOf([Yup.ref('password'), null as any], "Confirmation password doesn't match"),
     })
-    .oneOf([Yup.ref('password'), null as any], "Confirmation password doesn't match"),
+    .nullable(),
 })
 
 const passMessage = [
@@ -97,6 +111,8 @@ const Index: FC<{
   const [showValidation, setShowValidation] = useState(false)
   const [passwordValidation, setPasswordValidation] = useState<any[]>([])
 
+  // const [securePassword, setSecurePassword] = useState<boolean>(true)
+
   useEffect(() => {
     setDetail(show ? data : undefined)
   }, [show, data])
@@ -109,6 +125,7 @@ const Index: FC<{
     phone: detail?.phone || '',
     password: '',
     password_confirm: '',
+    secure_password: true,
   }
 
   const formik = useFormik({
@@ -270,6 +287,23 @@ const Index: FC<{
                   <div className={configClass.formError}>{formik?.errors?.phone?.toString()}</div>
                 )}
               </div>
+              <div className='col-12 mt-10px'>
+                <div className='btn btn-outline btn-outline-secondary w-auto px-10px py-10px radius-10'>
+                  <div className='form-check'>
+                    <label className='form-check-label d-flex align-items-center gap-5px'>
+                      <input
+                        className='form-check-input'
+                        type='checkbox'
+                        defaultChecked={true}
+                        onChange={(e) =>
+                          formik.setFieldValue('secure_password', e?.target?.checked)
+                        }
+                      />
+                      <div className='fw-bold lh-2 me-5px text-dark fs-13px'>Secure Password</div>
+                    </label>
+                  </div>
+                </div>
+              </div>
               <div className='col-lg-6 my-10px'>
                 <div className={configClass?.label}>Kata Sandi</div>
                 <div className='input-group input-group-solid d-flex align-items-center bg-white border border-gray-300 overflow-hidden h-40px'>
@@ -290,7 +324,7 @@ const Index: FC<{
                     {!passwordShown && <i className='las la-eye-slash fs-2' />}
                   </div>
                 </div>
-                {formik?.touched?.password && showValidation ? (
+                {formik?.touched?.password && showValidation && formik?.values?.secure_password ? (
                   <div className='mt-5px'>
                     {passwordValidation?.map((item, key: number) => (
                       <div key={key} className='d-flex align-items-center gap-5px'>
