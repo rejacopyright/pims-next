@@ -79,6 +79,18 @@ const Index: FC<any> = () => {
         <AsideMenuItem to={`${APP_ADMIN_PATH}/user/member`} title='Member' hasBullet={true} />
         <AsideMenuItem to={`${APP_ADMIN_PATH}/user/trainer`} title='Trainer' hasBullet={true} />
       </AsideMenuItemWithSub>
+      <div className='menu-item'>
+        <div className='menu-content pt-8 pb-2'>
+          <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Settings</span>
+        </div>
+      </div>
+      <AsideMenuItemWithSub
+        to={`${APP_ADMIN_PATH}/settings`}
+        title='Pengaturan'
+        fontIcon='bi-user'
+        icon='/media/icons/coding/cod009.svg'>
+        <AsideMenuItem to={`${APP_ADMIN_PATH}/settings/fee`} title='Harga' hasBullet={true} />
+      </AsideMenuItemWithSub>
     </>
   )
 }

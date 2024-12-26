@@ -54,7 +54,7 @@ const Index: FC<any> = () => {
 
   return (
     <div className='content'>
-      <title>UserMember</title>
+      <title>User | Member</title>
       <Filter
         onClickAdd={() => {
           setTmpDetail(undefined)
