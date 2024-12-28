@@ -38,7 +38,7 @@ const Topbar: FC = () => {
       {/* Menu */}
       {hasToken && (
         <div
-          className={clsx('d-flex align-items-center d-block d-lg-none', toolbarButtonMarginClass)}>
+          className={clsx('d-none align-items-center d-block d-lg-none', toolbarButtonMarginClass)}>
           <div
             className={clsx(
               'btn btn-icon btn-active-light-primary btn-custom',

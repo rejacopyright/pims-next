@@ -1,11 +1,10 @@
-import { KTSVG } from '@helpers'
 import Link from 'next/link'
 import { FC } from 'react'
 import { shallowEqual, useSelector } from 'react-redux'
 
 const MobileMenuDrawer: FC<any> = () => {
-  const user: any = useSelector(({ user }: any) => user?.data, shallowEqual)
-  const email: any = user?.mails?.find(({ user_eml_rprs }: any) => user_eml_rprs === 'Y')?.user_eml
+  const user: any = useSelector(({ user }: any) => user?.admin, shallowEqual)
+  const email: any = user?.email
   return (
     <div
       id='kt_menu'
@@ -56,23 +55,6 @@ const MobileMenuDrawer: FC<any> = () => {
                 </div>
               </div>
               {/* CARD MENU */}
-              <div className='row mb-40px'>
-                <div className='col-6 px-10px my-10px'>
-                  <Link
-                    href='/wallet'
-                    className='d-flex flex-center border border-gray-300 radius-15 bg-white'
-                    style={{ height: '150px' }}>
-                    <div className=''>
-                      <div
-                        className='d-flex flex-center bg-light-orange radius-5 mx-auto'
-                        style={{ width: '36px', height: '36px', border: '1px solid #f7ae86' }}>
-                        <KTSVG path='/media/icons/custom/wallet.svg' svgClassName='w-18px h-18px' />
-                      </div>
-                      <div className='fw-600 fs-22px mt-20px text-gray-800'>나의 지갑</div>
-                    </div>
-                  </Link>
-                </div>
-              </div>
               <Link
                 href='/policy'
                 scroll={false}
@@ -80,7 +62,7 @@ const MobileMenuDrawer: FC<any> = () => {
                 <div className='d-flex flex-center radius-100 border border-2 border-gray-300 w-30px h-30px'>
                   <i className='fas fa-arrow-right text-gray-400 fs-14px' />
                 </div>
-                <div className='fs-20px text-gray-800 fw-600'>개인정보 처리 방침</div>
+                <div className='fs-20px text-gray-800 fw-600'>Policy</div>
               </Link>
               <Link
                 href='/terms'
@@ -89,17 +71,8 @@ const MobileMenuDrawer: FC<any> = () => {
                 <div className='d-flex flex-center radius-100 border border-2 border-gray-300 w-30px h-30px'>
                   <i className='fas fa-arrow-right text-gray-400 fs-14px' />
                 </div>
-                <div className='fs-20px text-gray-800 fw-600'>서비스 이용 약관</div>
+                <div className='fs-20px text-gray-800 fw-600'>Terms</div>
               </Link>
-              <div className='d-flex h-200px align-items-center'>
-                <div className=''>
-                  <div className='fs-22px text-gray-800 fw-700'>고객센터</div>
-                  <div className='fs-15px text-gray-600 fw-400 my-13px'>
-                    고객센터 이메일로 문의하시면 빠른 시간 내에 이메일로 답변드리도록 하겠습니다.
-                  </div>
-                  <div className='fs-16px text-gray-600 fw-700'>example@email.com</div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
