@@ -1,6 +1,6 @@
 import { addUser, changeUserToRegular, updateUser } from '@api/users'
 import { ToastMessage } from '@components/toast'
-import { configClass } from '@helpers'
+import { configClass, notUsername } from '@helpers'
 import { useQueryClient } from '@tanstack/react-query'
 import { useFormik } from 'formik'
 import { FC, useEffect, useState } from 'react'
@@ -29,7 +29,10 @@ const addSchema: any = Yup.object().shape({
   email: Yup.string()
     .matches(new RegExp(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i), 'Wrong email format')
     .required('Email is required'),
-  username: Yup.string().required('Username is required'),
+  username: Yup.string()
+    .test('username', 'Hanya diperbolehkan huruf kecil, (_), dan angka', notUsername)
+    .min(3, 'Minimal 3 huruf')
+    .required('Username is required'),
   first_name: Yup.string().required('First name is required'),
   last_name: Yup.string().required('Last name is required'),
   phone: Yup.string()
@@ -58,7 +61,10 @@ const editSchema: any = Yup.object().shape({
   email: Yup.string()
     .matches(new RegExp(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i), 'Wrong email format')
     .required('Email is required'),
-  username: Yup.string().required('Username is required'),
+  username: Yup.string()
+    .test('username', 'Hanya diperbolehkan huruf kecil, (_), dan angka', notUsername)
+    .min(3, 'Minimal 3 huruf')
+    .required('Username is required'),
   first_name: Yup.string().required('First name is required'),
   last_name: Yup.string().required('Last name is required'),
   phone: Yup.string()

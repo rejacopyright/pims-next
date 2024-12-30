@@ -59,6 +59,9 @@ export const toCurrency = (number: number) =>
 export const isValidMail = (text: any) =>
   text?.toString()?.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
 
+export const notUsername = (text: any) =>
+  !text?.toString()?.match(/([A-Z\W\s!@#$%^&*()\-+=/,.?'`~":;{}\]\\[|<>])/)
+
 export const isValidURL = (str: any) => {
   const pattern = new RegExp(
     '^(https?:\\/\\/)?' + // protocol
