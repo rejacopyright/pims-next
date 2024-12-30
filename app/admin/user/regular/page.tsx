@@ -118,6 +118,8 @@ const Index: FC<any> = () => {
           data={dataUserRegular}
           pagination
           total={dataUserRegularTotal}
+          // select={true}
+          // onSelect={() => ''}
           columnClasses={{ image: 'text-center' }}
           headers={[
             { value: 'image', label: '#', className: 'text-center', width: 0, sort: false },

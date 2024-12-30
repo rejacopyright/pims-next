@@ -4,10 +4,12 @@ import { elementProperty } from '@components/cards/Sticky'
 import { LogoLoader } from '@components/loader/logo'
 import { useSize } from '@hooks'
 import { clsx } from 'clsx'
+import filter from 'lodash/filter'
+import find from 'lodash/find'
 import pick from 'lodash/pick'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { parse, stringify } from 'qs'
-import { CSSProperties, FC, useRef, useState } from 'react'
+import { CSSProperties, FC, useMemo, useRef, useState } from 'react'
 
 import { TablePagination } from './pagination'
 
@@ -36,6 +38,8 @@ export interface TableTypes {
   stickyHeader?: boolean
   loading?: boolean
   searchParam?: any
+  select?: boolean
+  onSelect?: (e: any[]) => void
 }
 
 const Index: FC<TableTypes> = ({
@@ -52,6 +56,8 @@ const Index: FC<TableTypes> = ({
   theadClass = 'gd-primary fw-bolder text-white',
   stickyHeader = false,
   loading = false,
+  select = false,
+  onSelect = () => '',
 }) => {
   const router = useRouter()
   const pathname = usePathname()
@@ -61,6 +67,11 @@ const Index: FC<TableTypes> = ({
 
   // STATES
   const [stickyHeight, setStickyHeight] = useState<number>(0)
+  const [checkedItem, setCheckedItem] = useState<any>([])
+
+  const allIsChecked: any = useMemo(() => {
+    return checkedItem?.length >= data?.length
+  }, [data?.length, checkedItem?.length])
 
   // REF
   const thRef: any = useRef([])
@@ -102,6 +113,28 @@ const Index: FC<TableTypes> = ({
             className={`${theadClass} ${stickyHeader ? 'position-lg-sticky' : ''}`}
             style={{ top: stickyHeader ? `${stickyHeight}px` : 'unset', zIndex: 2 }}>
             <tr className=''>
+              {select && (
+                <th style={{ width: 0, left: 0 }} className='user-select-none'>
+                  <div
+                    className={`d-inline-flex align-items-center radius-5 cursor-pointer header-container`}>
+                    <div className='form-check' style={{ marginRight: '-28px' }}>
+                      <input
+                        className='form-check-input me-0'
+                        name='name'
+                        autoComplete='all'
+                        type='checkbox'
+                        checked={allIsChecked}
+                        onChange={(e: any) => {
+                          const isChecked: boolean = e?.target?.checked
+                          setCheckedItem(isChecked ? data : [])
+                          onSelect(isChecked ? data : [])
+                        }}
+                      />
+                      {/* <div className='fw-bold fs-14px text-white text-nowrap'>All</div> */}
+                    </div>
+                  </div>
+                </th>
+              )}
               {headers?.map((header: any, index: number) => {
                 const {
                   value,
@@ -214,6 +247,30 @@ const Index: FC<TableTypes> = ({
 
               return (
                 <tr className='' key={index}>
+                  {select && (
+                    <td className='align-middle'>
+                      <div
+                        className={`d-inline-flex align-items-center radius-5 cursor-pointer header-container`}>
+                        <div className='form-check' style={{ marginRight: '-28px' }}>
+                          <input
+                            className='form-check-input me-0'
+                            name='name'
+                            autoComplete='all'
+                            type='checkbox'
+                            checked={Boolean(find(checkedItem, dt))}
+                            onChange={(e: any) => {
+                              const isChecked: boolean = e?.target?.checked
+                              const includedItem: any = [...checkedItem, dt]
+                              const excludedItem: any = filter(checkedItem, (f: any) => f !== dt)
+                              setCheckedItem(isChecked ? includedItem : excludedItem)
+                              onSelect(isChecked ? includedItem : excludedItem)
+                            }}
+                          />
+                          {/* <div className='fw-bold fs-14px text-white text-nowrap'>All</div> */}
+                        </div>
+                      </div>
+                    </td>
+                  )}
                   {headerArrayStr?.map((key: any, indexItem: number) => {
                     const content: any = item?.[key]
                     let thisEl: any = content
