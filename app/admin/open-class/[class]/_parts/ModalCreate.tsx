@@ -39,9 +39,9 @@ const validationSchema = Yup.object().shape({
   trainer_id: Yup.mixed()
     .test('trainer_id', 'Trainer wajib diisi', (e: any) => e?.value || typeof e === 'string')
     .nullable(),
-  quota: Yup.number().min(1, 'Mminimal 1').required('Kuota wajib diisi'),
-  session: Yup.number().min(1, 'Mminimal 1').required('Sesi wajib diisi'),
-  // fee: Yup.number().min(1, 'Mminimal 1').required('Fee wajib diisi'),
+  quota: Yup.number().min(1, 'Minimal 1').required('Kuota wajib diisi'),
+  session: Yup.number().min(1, 'Minimal 1').required('Sesi wajib diisi'),
+  // fee: Yup.number().min(1, 'Minimal 1').required('Fee wajib diisi'),
 })
 
 const Index: FC<{

@@ -90,6 +90,11 @@ const Index: FC<any> = () => {
         fontIcon='bi-user'
         icon='/media/icons/coding/cod009.svg'>
         <AsideMenuItem to={`${APP_ADMIN_PATH}/settings/fee`} title='Harga' hasBullet={true} />
+        <AsideMenuItem
+          to={`${APP_ADMIN_PATH}/settings/app-banner`}
+          title='Banner Aplikasi'
+          hasBullet={true}
+        />
       </AsideMenuItemWithSub>
     </>
   )

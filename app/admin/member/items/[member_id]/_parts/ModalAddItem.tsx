@@ -26,8 +26,8 @@ const validationSchema = Yup.object().shape({
     'Kelas wajib diisi',
     (e: any) => e?.value || typeof e === 'string'
   ),
-  // fee: Yup.number().min(1, 'Mminimal 1').required('Fee wajib diisi'),
-  // quota: Yup.number().min(1, 'Mminimal 1').required('Kuota wajib diisi'),
+  // fee: Yup.number().min(1, 'Minimal 1').required('Fee wajib diisi'),
+  // quota: Yup.number().min(1, 'Minimal 1').required('Kuota wajib diisi'),
 })
 
 const validationSchemaForVisit = Yup.object().shape({
